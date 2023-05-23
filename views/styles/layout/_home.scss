@@ -1,0 +1,85 @@
+.home-content {
+  display: flex;
+  gap: 4rem;
+
+  .content {
+    width: 100%;
+    box-sizing: border-box;
+
+    .content-title {
+      font-size: clamp(1.75rem, 5vw, 3rem);
+      margin: 0;
+    }
+    p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      margin: 1rem 0;
+    }
+    .button-container {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+  .image-container {
+    height: 100%;
+    display: grid;
+    place-items: center;
+    img {
+      display: block;
+      width: 100%;
+    }
+
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column-reverse;
+    gap: 2rem;
+  }
+}
+
+
+.instruction-banner {
+  background-color: $primary-black;
+  color: $primary-white;
+  display: grid;
+  place-items: center;
+  padding: 2.5rem 0;
+  margin: 4rem 0;
+  margin-bottom: 0;
+  h1 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 4rem);
+    text-align: center;
+  }
+  ul {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    width: max-content;
+    margin: 0 auto;
+    margin-top: 1rem;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    $list-num-size: 35px;
+    $left-offset: 8px;
+    padding-left: calc($list-num-size + $left-offset);
+    li {
+      counter-increment: list-counter;
+      position: relative;
+      &::before {
+        content: counter(list-counter);
+        position: absolute;
+        top: 50%;
+        left: calc($left-offset * -1);
+        transform: translate(-100%, -50%);
+        width: $list-num-size;
+        height: $list-num-size;
+        box-sizing: border-box;
+        color: black;
+        display: grid;
+        place-items: center;
+        background-color: $accent-yellow;
+        border-radius: 50%;
+      }
+    }
+  }
+}

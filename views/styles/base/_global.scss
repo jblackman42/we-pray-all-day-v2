@@ -1,0 +1,64 @@
+@font-face {
+	font-family: Proxima-nova;
+	src: url('../../assets/Proxima-Nova.otf') format('opentype');
+}
+@font-face {
+	font-family: Tropoline;
+	src: url('../../assets/Tropiline-Black.otf') format('opentype');
+}
+
+
+body,
+html {
+	font-family: Tropoline;
+	min-height: 100vh;
+	width: 100%;
+	max-width: 100vw;
+	display: flex;
+	flex-direction: column;
+	overflow-x: hidden;
+
+	background-color: $primary-white;
+}
+p, ol, ul, li {
+	font-family: Proxima-nova;
+}
+#back-btn {
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	color: #2980b9;
+}
+
+.container {
+	width: $container-width;
+	margin: 0 auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.btn {
+	display: block;
+
+	font-family: Proxima-nova;
+	font-weight: bold;
+	font-size: clamp(.8rem, 2vw, 1.25rem);
+	text-decoration: none;
+	color: $primary-white;
+
+	background-color: $primary-black;
+	&.highlight {
+		background-color: $accent-yellow;
+		color: $primary-black;
+	}
+
+	width: max-content;
+	padding: .75rem 1.25rem;
+	border-radius: .25rem;
+
+	
+	transition: transform 350ms cubic-bezier(.8, .5, .2, 1.4), opacity 400ms linear;
+	&:hover {
+		transform: translateY(-2px);
+	}
+}

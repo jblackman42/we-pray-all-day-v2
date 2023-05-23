@@ -1,0 +1,41 @@
+footer {
+  display: grid;
+  place-items: center;
+  font-family: Proxima-Nova;
+  margin-top: auto;
+  background-color: $primary-black;
+  padding: 2rem 0;
+  gap: .5rem;
+  .img-container {
+    width: 150px;
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+  .links {
+    $gap: 1rem;
+    display: flex;
+    gap: $gap;
+    a {
+      position: relative;
+      &:not(:last-of-type):after {
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 1px;
+        right: calc($gap / -2);
+        background-color: $primary-white;
+      }
+    }
+  }
+  a, p {
+    color: $primary-white;
+    text-decoration: none;
+    margin: 0;
+    font-size: clamp(14px, 2vw, 1rem);
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

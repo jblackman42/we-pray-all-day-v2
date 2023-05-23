@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+    <%- include('../partials/navbar'); %>
+
+    <div class="container home-content">
+      <section class="content info">
+        <h1 class="content-title">Uniting the Church Body Through Prayer</h1>
+        <p>"Pray in the Spirit at all times and on every occasion. Stay alert and be persistent in your prayers for all believers everywhere"</p>
+        <p style="text-align: right;">Ephesians 6:18 NLT</p>
+        <div class="button-container">
+          <a href="#" class="btn highlight">Get Started</a>
+          <a href="#" class="btn">How Does It Work</a>
+        </div>
+      </section>
+      <section class="content">
+        <div class="image-container">
+          <img src="/assets/homepage-banner-arizona.png" alt="Covering Arizona is 24/7 Prayer">
+        </div>
+      </section>
+    </div>
+
+
+    <div class="instruction-banner">
+      <div class="instructions">
+        <h1>Getting Started is Easy</h1>
+        <ul>
+          <li>📆 Pick a day and an hour</li>
+          <li>🗃️ Sign up with your church/community</li>
+          <li>🙏 Pray!</li>
+        </ul>
+      </div>
+    </div>
+
+    <prayer-calendar>
+    </prayer-calendar>
+    
+    <%- include('../partials/footer'); %>
+</body>
+
+</html>

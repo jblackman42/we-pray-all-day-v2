@@ -1,0 +1,1032 @@
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+/* Document
+   ========================================================================== */
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/* Sections
+     ========================================================================== */
+/**
+   * Remove the margin in all browsers.
+   */
+body {
+  margin: 0;
+}
+
+/**
+   * Render the `main` element consistently in IE.
+   */
+main {
+  display: block;
+}
+
+/**
+   * Correct the font size and margin on `h1` elements within `section` and
+   * `article` contexts in Chrome, Firefox, and Safari.
+   */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Grouping content
+     ========================================================================== */
+/**
+   * 1. Add the correct box sizing in Firefox.
+   * 2. Show the overflow in Edge and IE.
+   */
+hr {
+  box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
+}
+
+/**
+   * 1. Correct the inheritance and scaling of font size in all browsers.
+   * 2. Correct the odd `em` font sizing in all browsers.
+   */
+pre {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/* Text-level semantics
+     ========================================================================== */
+/**
+   * Remove the gray background on active links in IE 10.
+   */
+a {
+  background-color: transparent;
+}
+
+/**
+   * 1. Remove the bottom border in Chrome 57-
+   * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+   */
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted; /* 2 */
+}
+
+/**
+   * Add the correct font weight in Chrome, Edge, and Safari.
+   */
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+   * 1. Correct the inheritance and scaling of font size in all browsers.
+   * 2. Correct the odd `em` font sizing in all browsers.
+   */
+code,
+kbd,
+samp {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/**
+   * Add the correct font size in all browsers.
+   */
+small {
+  font-size: 80%;
+}
+
+/**
+   * Prevent `sub` and `sup` elements from affecting the line height in
+   * all browsers.
+   */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+     ========================================================================== */
+/**
+   * Remove the border on images inside links in IE 10.
+   */
+img {
+  border-style: none;
+}
+
+/* Forms
+     ========================================================================== */
+/**
+   * 1. Change the font styles in all browsers.
+   * 2. Remove the margin in Firefox and Safari.
+   */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+   * Show the overflow in IE.
+   * 1. Show the overflow in Edge.
+   */
+button,
+input {
+  /* 1 */
+  overflow: visible;
+}
+
+/**
+   * Remove the inheritance of text transform in Edge, Firefox, and IE.
+   * 1. Remove the inheritance of text transform in Firefox.
+   */
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+
+/**
+   * Correct the inability to style clickable types in iOS and Safari.
+   */
+button,
+[type=button],
+[type=reset],
+[type=submit] {
+  -webkit-appearance: button;
+}
+
+/**
+   * Remove the inner border and padding in Firefox.
+   */
+button::-moz-focus-inner,
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+   * Restore the focus styles unset by the previous rule.
+   */
+button:-moz-focusring,
+[type=button]:-moz-focusring,
+[type=reset]:-moz-focusring,
+[type=submit]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+   * Correct the padding in Firefox.
+   */
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+   * 1. Correct the text wrapping in Edge and IE.
+   * 2. Correct the color inheritance from `fieldset` elements in IE.
+   * 3. Remove the padding so developers are not caught out when they zero out
+   *    `fieldset` elements in all browsers.
+   */
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
+/**
+   * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+   */
+progress {
+  vertical-align: baseline;
+}
+
+/**
+   * Remove the default vertical scrollbar in IE 10+.
+   */
+textarea {
+  overflow: auto;
+}
+
+/**
+   * 1. Add the correct box sizing in IE 10.
+   * 2. Remove the padding in IE 10.
+   */
+[type=checkbox],
+[type=radio] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+   * Correct the cursor style of increment and decrement buttons in Chrome.
+   */
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+   * 1. Correct the odd appearance in Chrome and Safari.
+   * 2. Correct the outline style in Safari.
+   */
+[type=search] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/**
+   * Remove the inner padding in Chrome and Safari on macOS.
+   */
+[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+   * 1. Correct the inability to style clickable types in iOS and Safari.
+   * 2. Change font properties to `inherit` in Safari.
+   */
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/* Interactive
+     ========================================================================== */
+/*
+   * Add the correct display in Edge, IE 10+, and Firefox.
+   */
+details {
+  display: block;
+}
+
+/*
+   * Add the correct display in all browsers.
+   */
+summary {
+  display: list-item;
+}
+
+/* Misc
+     ========================================================================== */
+/**
+   * Add the correct display in IE 10+.
+   */
+template {
+  display: none;
+}
+
+/**
+   * Add the correct display in IE 10.
+   */
+[hidden] {
+  display: none;
+}
+
+@font-face {
+  font-family: Proxima-nova;
+  src: url("../../assets/Proxima-Nova.otf") format("opentype");
+}
+@font-face {
+  font-family: Tropoline;
+  src: url("../../assets/Tropiline-Black.otf") format("opentype");
+}
+body,
+html {
+  font-family: Tropoline;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background-color: #f5eee3;
+}
+
+p, ol, ul, li {
+  font-family: Proxima-nova;
+}
+
+#back-btn {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #2980b9;
+}
+
+.container {
+  width: clamp(50vw, 1280px, 100vw);
+  margin: 0 auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.btn {
+  display: block;
+  font-family: Proxima-nova;
+  font-weight: bold;
+  font-size: clamp(0.8rem, 2vw, 1.25rem);
+  text-decoration: none;
+  color: #f5eee3;
+  background-color: #2e2d2b;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.25rem;
+  transition: transform 350ms cubic-bezier(0.8, 0.5, 0.2, 1.4), opacity 400ms linear;
+}
+.btn.highlight {
+  background-color: #fcbb09;
+  color: #2e2d2b;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: clamp(50vw, 1280px, 100vw);
+  margin: 0 auto;
+  padding: 1rem;
+  box-sizing: border-box;
+  font-family: Proxima-nova;
+  position: relative;
+  z-index: 99999999999;
+}
+nav .logo-container {
+  width: 150px;
+}
+nav .logo-container img {
+  max-width: 100%;
+  display: block;
+}
+nav #links-container {
+  display: flex;
+  box-sizing: border-box;
+}
+nav #links-container .link {
+  height: -moz-max-content;
+  height: max-content;
+  transition: transform 350ms cubic-bezier(0.8, 0.5, 0.2, 1.4), opacity 400ms linear;
+}
+nav #links-container .link:hover {
+  transform: translateY(-2px);
+}
+nav #links-container .link.highlight a {
+  background-color: #fcbb09;
+}
+nav #links-container .link a {
+  display: block;
+  text-decoration: none;
+  color: #2e2d2b;
+  font-size: 20px;
+  padding: 0.75rem 2rem;
+  border-radius: 0.25rem;
+}
+nav .toggle-nav {
+  display: none;
+  visibility: hidden;
+}
+nav .toggle-nav #toggle-nav-btn {
+  display: grid;
+  place-items: center;
+  padding: 0.5rem;
+  background-color: #fcbb09;
+  border-radius: 0.25rem;
+  border: none;
+}
+nav .toggle-nav #toggle-nav-btn i {
+  font-size: 28px;
+  color: #2e2d2b;
+}
+nav .toggle-nav #toggle-nav-btn:active {
+  transform: scale(0.9);
+}
+@media screen and (max-width: 1024px) {
+  nav #links-container .link a {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 768px) {
+  nav .toggle-nav {
+    display: block;
+    visibility: visible;
+  }
+  nav #links-container {
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+  nav #links-container .link {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+  nav #links-container .link a {
+    text-align: center;
+    font-size: 20px;
+    background-color: #f5eee3;
+  }
+  nav #links-container.open .link {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  nav #links-container.open .link:first-of-type {
+    border-top: 2px solid #2e2d2b;
+  }
+  nav #links-container.open .link:last-of-type {
+    border-bottom: 2px solid #2e2d2b;
+  }
+  nav #links-container.open .link:nth-child(1) {
+    transition-delay: 100ms;
+  }
+  nav #links-container.open .link:nth-child(2) {
+    transition-delay: 200ms;
+  }
+  nav #links-container.open .link:nth-child(3) {
+    transition-delay: 300ms;
+  }
+  nav #links-container.open .link:nth-child(4) {
+    transition-delay: 400ms;
+  }
+  nav #links-container.open .link:nth-child(5) {
+    transition-delay: 500ms;
+  }
+  nav #links-container.open .link:nth-child(6) {
+    transition-delay: 600ms;
+  }
+  nav #links-container.open .link:nth-child(7) {
+    transition-delay: 700ms;
+  }
+  nav #links-container.open .link:nth-child(8) {
+    transition-delay: 800ms;
+  }
+  nav #links-container.open .link:nth-child(9) {
+    transition-delay: 900ms;
+  }
+  nav #links-container.open .link:nth-child(10) {
+    transition-delay: 1000ms;
+  }
+  nav #links-container.open .link:nth-child(11) {
+    transition-delay: 1100ms;
+  }
+  nav #links-container.open .link:nth-child(12) {
+    transition-delay: 1200ms;
+  }
+  nav #links-container.open .link:nth-child(13) {
+    transition-delay: 1300ms;
+  }
+  nav #links-container.open .link:nth-child(14) {
+    transition-delay: 1400ms;
+  }
+  nav #links-container.open .link:nth-child(15) {
+    transition-delay: 1500ms;
+  }
+  nav #links-container.open .link:nth-child(16) {
+    transition-delay: 1600ms;
+  }
+  nav #links-container.open .link:nth-child(17) {
+    transition-delay: 1700ms;
+  }
+  nav #links-container.open .link:nth-child(18) {
+    transition-delay: 1800ms;
+  }
+  nav #links-container.open .link:nth-child(19) {
+    transition-delay: 1900ms;
+  }
+  nav #links-container.open .link:nth-child(20) {
+    transition-delay: 2000ms;
+  }
+  nav #links-container.open .link:nth-child(21) {
+    transition-delay: 2100ms;
+  }
+  nav #links-container.open .link:nth-child(22) {
+    transition-delay: 2200ms;
+  }
+  nav #links-container.open .link:nth-child(23) {
+    transition-delay: 2300ms;
+  }
+  nav #links-container.open .link:nth-child(24) {
+    transition-delay: 2400ms;
+  }
+  nav #links-container.open .link:nth-child(25) {
+    transition-delay: 2500ms;
+  }
+  nav #links-container.open .link:nth-child(26) {
+    transition-delay: 2600ms;
+  }
+  nav #links-container.open .link:nth-child(27) {
+    transition-delay: 2700ms;
+  }
+  nav #links-container.open .link:nth-child(28) {
+    transition-delay: 2800ms;
+  }
+  nav #links-container.open .link:nth-child(29) {
+    transition-delay: 2900ms;
+  }
+  nav #links-container.open .link:nth-child(30) {
+    transition-delay: 3000ms;
+  }
+  nav #links-container.open .link:nth-child(31) {
+    transition-delay: 3100ms;
+  }
+  nav #links-container.open .link:nth-child(32) {
+    transition-delay: 3200ms;
+  }
+  nav #links-container.open .link:nth-child(33) {
+    transition-delay: 3300ms;
+  }
+  nav #links-container.open .link:nth-child(34) {
+    transition-delay: 3400ms;
+  }
+  nav #links-container.open .link:nth-child(35) {
+    transition-delay: 3500ms;
+  }
+  nav #links-container.open .link:nth-child(36) {
+    transition-delay: 3600ms;
+  }
+  nav #links-container.open .link:nth-child(37) {
+    transition-delay: 3700ms;
+  }
+  nav #links-container.open .link:nth-child(38) {
+    transition-delay: 3800ms;
+  }
+  nav #links-container.open .link:nth-child(39) {
+    transition-delay: 3900ms;
+  }
+  nav #links-container.open .link:nth-child(40) {
+    transition-delay: 4000ms;
+  }
+  nav #links-container.open .link:nth-child(41) {
+    transition-delay: 4100ms;
+  }
+  nav #links-container.open .link:nth-child(42) {
+    transition-delay: 4200ms;
+  }
+  nav #links-container.open .link:nth-child(43) {
+    transition-delay: 4300ms;
+  }
+  nav #links-container.open .link:nth-child(44) {
+    transition-delay: 4400ms;
+  }
+  nav #links-container.open .link:nth-child(45) {
+    transition-delay: 4500ms;
+  }
+  nav #links-container.open .link:nth-child(46) {
+    transition-delay: 4600ms;
+  }
+  nav #links-container.open .link:nth-child(47) {
+    transition-delay: 4700ms;
+  }
+  nav #links-container.open .link:nth-child(48) {
+    transition-delay: 4800ms;
+  }
+  nav #links-container.open .link:nth-child(49) {
+    transition-delay: 4900ms;
+  }
+  nav #links-container.open .link:nth-child(50) {
+    transition-delay: 5000ms;
+  }
+}
+
+footer {
+  display: grid;
+  place-items: center;
+  font-family: Proxima-Nova;
+  margin-top: auto;
+  background-color: #2e2d2b;
+  padding: 2rem 0;
+  gap: 0.5rem;
+}
+footer .img-container {
+  width: 150px;
+}
+footer .img-container img {
+  width: 100%;
+  display: block;
+}
+footer .links {
+  display: flex;
+  gap: 1rem;
+}
+footer .links a {
+  position: relative;
+}
+footer .links a:not(:last-of-type):after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  right: -0.5rem;
+  background-color: #f5eee3;
+}
+footer a, footer p {
+  color: #f5eee3;
+  text-decoration: none;
+  margin: 0;
+  font-size: clamp(14px, 2vw, 1rem);
+}
+footer a:hover, footer p:hover {
+  text-decoration: underline;
+}
+
+prayer-calendar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  padding: 4rem 0;
+}
+prayer-calendar .calendar {
+  display: grid;
+  width: clamp(50vw, 1280px, 100vw);
+  font-family: Proxima-Nova;
+  box-sizing: border-box;
+  padding: 1rem;
+}
+prayer-calendar .calendar .calendar-controls {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+@media screen and (max-width: 1440px) {
+  prayer-calendar .calendar .calendar-controls {
+    justify-content: center !important;
+    gap: 1rem;
+  }
+}
+prayer-calendar .calendar .calendar-controls .month-selector-container {
+  display: flex;
+}
+prayer-calendar .calendar .calendar-controls .month-selector-container .btn {
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  transform: translate(0);
+}
+prayer-calendar .calendar .calendar-controls .month-selector-container h3 {
+  height: -moz-max-content;
+  height: max-content;
+  margin: auto 0;
+  text-align: center;
+  width: 200px;
+}
+prayer-calendar .calendar .calendar-controls #community-select {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: white;
+  color: black;
+  outline: none;
+}
+prayer-calendar .calendar .calendar-controls #legend {
+  display: flex;
+}
+prayer-calendar .calendar .calendar-controls #legend #empty-square, prayer-calendar .calendar .calendar-controls #legend #filled-square {
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+  background-color: white;
+}
+prayer-calendar .calendar .calendar-controls #legend #filled-square {
+  margin-left: 2rem;
+  background-color: #fee32d;
+}
+prayer-calendar .calendar .calendar-controls #legend p {
+  margin: 0;
+  margin-left: 4px;
+}
+@media screen and (max-width: 768px) {
+  prayer-calendar .calendar .calendar-controls #legend {
+    display: none;
+    visibility: hidden;
+  }
+}
+@media screen and (max-width: 768px) {
+  prayer-calendar .calendar .calendar-controls {
+    justify-content: center;
+    gap: 1rem;
+  }
+  prayer-calendar .calendar .calendar-controls #community-select {
+    font-size: clamp(10px, 3vw, 16px);
+  }
+}
+prayer-calendar .calendar #weekdays {
+  display: flex;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+prayer-calendar .calendar #weekdays p {
+  text-align: center;
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  prayer-calendar .calendar #weekdays p span {
+    display: none;
+    visibility: hidden;
+  }
+}
+prayer-calendar .calendar #days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  font-size: clamp(8px, 1vw, 14px);
+}
+prayer-calendar .calendar #days-grid .calendar-day {
+  border: none;
+  background-color: #fcbb09;
+  color: black;
+  aspect-ratio: 1;
+  position: relative;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.25rem;
+}
+prayer-calendar .calendar #days-grid .calendar-day .date {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #2e2d2b;
+  color: #f5eee3;
+  border-radius: 0 0 4px 0;
+  margin: 0;
+  padding: 4px 8px;
+  border-top-left-radius: 0.25rem;
+}
+prayer-calendar .calendar #days-grid .calendar-day .day-row {
+  display: grid;
+  place-items: center;
+  height: 49%;
+  width: 100%;
+}
+prayer-calendar .calendar #days-grid .calendar-day .day-row.bottom {
+  height: 51%;
+  place-items: end;
+}
+prayer-calendar .calendar #days-grid .calendar-day .hours-label, prayer-calendar .calendar #days-grid .calendar-day .percent-label {
+  width: 100%;
+  background-color: #2e2d2b;
+  color: #f5eee3;
+  margin: 0;
+  margin-top: auto;
+  padding: 4px 0;
+}
+prayer-calendar .calendar #days-grid .calendar-day .percent-label {
+  display: none;
+  visibility: hidden;
+}
+prayer-calendar .calendar #days-grid .calendar-day .hours-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 1px;
+  background-color: #2e2d2b;
+  padding: 1px;
+  box-sizing: border-box;
+}
+prayer-calendar .calendar #days-grid .calendar-day .hours-container a {
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: white;
+  position: relative;
+}
+prayer-calendar .calendar #days-grid .calendar-day .hours-container a:hover::before, prayer-calendar .calendar #days-grid .calendar-day .hours-container a:hover::after {
+  display: block;
+  visibility: visible;
+}
+prayer-calendar .calendar #days-grid .calendar-day .hours-container a::after {
+  display: none;
+  visibility: hidden;
+  content: attr(data-content);
+  font-family: Proxima-nova;
+  color: #2e2d2b;
+  position: absolute;
+  width: -moz-max-content;
+  width: max-content;
+  bottom: calc(100% + 3px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  background-color: white;
+  box-shadow: 0 0 5px 1px #2e2d2b;
+  border-radius: 2px;
+  padding: 0.25rem;
+}
+prayer-calendar .calendar #days-grid .calendar-day .hours-container a::before {
+  display: none;
+  visibility: hidden;
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  border: 1px solid #2e2d2b;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  bottom: calc(100% - 2.5px);
+  left: 50%;
+  border-bottom-left-radius: 2px;
+  z-index: 1000;
+  transform-origin: bottom left;
+  transform: rotate(-45deg);
+}
+prayer-calendar .calendar #days-grid .calendar-day .progress-bar-container {
+  width: 100%;
+  height: 8px;
+  display: none;
+  visibility: hidden;
+  background-color: #2e2d2b;
+  border-radius: 0 0 0.25rem 0.25rem;
+  overflow: hidden;
+}
+prayer-calendar .calendar #days-grid .calendar-day .progress-bar-container .progress-bar {
+  height: 100%;
+  background-color: #2ecc71;
+  border-radius: 0 4px 4px 0;
+}
+@media screen and (max-width: 768px) {
+  prayer-calendar .calendar #days-grid .day-row.bottom {
+    height: -moz-max-content;
+    height: max-content;
+  }
+  prayer-calendar .calendar #days-grid .community {
+    display: none;
+    visibility: hidden;
+  }
+  prayer-calendar .calendar #days-grid .hours-container {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  prayer-calendar .calendar #days-grid .date {
+    background-color: transparent !important;
+    color: black !important;
+    font-weight: bold;
+    left: 50% !important;
+    transform: translateX(-50%);
+    padding: 1vw !important;
+    font-size: 3vw;
+  }
+  prayer-calendar .calendar #days-grid .hours-label {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  prayer-calendar .calendar #days-grid .hours-label, prayer-calendar .calendar #days-grid .percent-label {
+    background-color: transparent !important;
+    color: black !important;
+    font-size: 2.5vw;
+  }
+  prayer-calendar .calendar #days-grid .percent-label {
+    display: block !important;
+    visibility: visible !important;
+  }
+  prayer-calendar .calendar #days-grid .progress-bar-container {
+    display: block !important;
+    visibility: visible !important;
+  }
+}
+prayer-calendar #loading {
+  background-color: rgba(46, 45, 43, 0.6666666667);
+  position: absolute;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  visibility: hidden;
+  display: none;
+}
+prayer-calendar .loader {
+  border: 16px solid rgba(0, 0, 0, 0.1333333333);
+  border-right: 16px solid #fcbb09;
+  border-left: 16px solid #fcbb09;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.home-content {
+  display: flex;
+  gap: 4rem;
+}
+.home-content .content {
+  width: 100%;
+  box-sizing: border-box;
+}
+.home-content .content .content-title {
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  margin: 0;
+}
+.home-content .content p {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  margin: 1rem 0;
+}
+.home-content .content .button-container {
+  display: flex;
+  gap: 1rem;
+}
+.home-content .image-container {
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+.home-content .image-container img {
+  display: block;
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .home-content {
+    flex-direction: column-reverse;
+    gap: 2rem;
+  }
+}
+
+.instruction-banner {
+  background-color: #2e2d2b;
+  color: #f5eee3;
+  display: grid;
+  place-items: center;
+  padding: 2.5rem 0;
+  margin: 4rem 0;
+  margin-bottom: 0;
+}
+.instruction-banner h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 4rem);
+  text-align: center;
+}
+.instruction-banner ul {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  width: -moz-max-content;
+  width: max-content;
+  margin: 0 auto;
+  margin-top: 1rem;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-left: 43px;
+}
+.instruction-banner ul li {
+  counter-increment: list-counter;
+  position: relative;
+}
+.instruction-banner ul li::before {
+  content: counter(list-counter);
+  position: absolute;
+  top: 50%;
+  left: -8px;
+  transform: translate(-100%, -50%);
+  width: 35px;
+  height: 35px;
+  box-sizing: border-box;
+  color: black;
+  display: grid;
+  place-items: center;
+  background-color: #fcbb09;
+  border-radius: 50%;
+}/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,333 @@
+prayer-calendar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  padding: 4rem 0;
+
+  .calendar {
+    display: grid;
+    width: $container-width;
+    font-family: Proxima-Nova;
+    box-sizing: border-box;
+    padding: 1rem;
+    .calendar-controls {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      // justify-content: center;
+      align-items: center;
+
+      @media screen and (max-width: 1440px) {
+        justify-content: center !important;
+        gap: 1rem;
+      }
+
+      .month-selector-container {
+        display: flex;
+        .btn {
+          display: grid;
+          place-items: center;
+          padding: 0;
+          border: none;
+          border-radius: 50%;
+          cursor: pointer;
+          width: 35px;
+          height: 35px;
+          transform: translate(0);
+        }
+        h3 {
+          height: max-content;
+          margin: auto 0;
+          text-align: center;
+          width: 200px;
+        }
+      }
+
+      #community-select {
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        border: none;
+        padding: 4px 8px;
+        border-radius: 4px;
+        background-color: white;
+        color: black;
+        outline: none;
+      }
+
+      #legend {
+        display: flex;
+        #empty-square, #filled-square {
+          width: 20px;
+          height: 20px;
+          border: 1px solid black;
+          background-color: white;
+        }
+        #filled-square {
+          margin-left: 2rem;
+          background-color: $accent-blue;
+        }
+        p {
+          margin: 0;
+          margin-left: 4px;
+        }
+        @media screen and (max-width: 768px) {
+          display: none;
+          visibility: hidden;
+        }
+      }
+      @media screen and (max-width: 768px) {
+        justify-content: center;
+        gap: 1rem;
+
+        #community-select {
+          font-size: clamp(10px, 3vw, 16px);
+        }
+      }
+    }
+
+    #weekdays {
+      display: flex;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      p {
+        text-align: center;
+        width: 100%;
+
+        @media screen and (max-width: 768px) {
+          span {
+            display: none;
+            visibility: hidden;
+          }
+        }
+      }
+    }
+
+    #days-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      font-size: clamp(8px, 1vw, 14px);
+      // font-size: 1vw;
+      // font-size: 8px;
+      // font-size: 14px;
+
+      .calendar-day {
+        border: none;
+        background-color: $accent-yellow;
+        color: black;
+        aspect-ratio: 1;
+        position: relative;
+        padding: 0;
+
+        display: flex;
+        flex-direction: column;
+        // justify-content: center;
+        // overflow: hidden;
+
+        $borderRadius: .25rem;
+        border-radius: $borderRadius;
+        .date {
+          position: absolute;
+          top: 0;
+          left: 0;
+          background-color: $primary-black;
+          color: $primary-white;
+          border-radius: 0 0 4px 0;
+          margin: 0;
+          padding: 4px 8px;
+
+          border-top-left-radius: $borderRadius;
+        }
+        .day-row {
+          display: grid;
+          place-items: center;
+          height: 49%;
+          width: 100%;
+          &.bottom {
+            height: 51%;
+            place-items: end;
+          }
+        }
+        // .title-container {
+        //   height: 100%;
+        //   width: 100%;
+        //   display: grid;
+        //   place-items: center;
+        //   margin: auto 0;
+        //   .community {
+        //     margin: 0 .5rem;
+        //     text-align: center;
+        //     .community-name {
+        //       font-weight: bold;
+        //     }
+        //   }
+        // }
+        .hours-label, .percent-label {
+          width: 100%;
+          background-color: $primary-black;
+          color: $primary-white;
+          margin: 0;
+          margin-top: auto;
+          padding: 4px 0;
+        }
+        .percent-label {
+          display: none;
+          visibility: hidden;
+        }
+
+        .hours-container {
+          width: 100%;
+          display: grid;
+          grid-template-columns: repeat(8, 1fr);
+          gap: 1px;
+          background-color: $primary-black;
+          padding: 1px;
+          box-sizing: border-box;
+          a {
+            width: 100%;
+            aspect-ratio: 1;
+            background-color: white;
+            position: relative;
+            &:hover::before,
+            &:hover::after {
+                display: block;
+                visibility: visible;
+            }
+
+            &::after {
+                display: none;
+                visibility: hidden;
+
+                content: attr(data-content);
+                font-family: Proxima-nova;
+                color: $primary-black;
+                position: absolute;
+                width: max-content;
+                bottom: calc(100% + 3px);
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 999;
+
+                background-color: white;
+                box-shadow: 0 0 5px 1px $primary-black;
+                border-radius: 2px;
+                padding: .25rem;
+            }
+
+            &::before {
+                display: none;
+                visibility: hidden;
+
+                content: '';
+                position: absolute;
+                width: 6px;
+                height: 6px;
+                background-color: white;
+                border: 1px solid $primary-black;
+                border-top-color: transparent;
+                border-right-color: transparent;
+                bottom: calc(100% - 2.5px);
+                left: 50%;
+                border-bottom-left-radius: 2px;
+                z-index: 1000;
+
+                transform-origin: bottom left;
+                transform: rotate(-45deg);
+            }
+          }
+        }
+        .progress-bar-container {
+          width: 100%;
+          height: 8px;
+          display: none;
+          visibility: hidden;
+          background-color: $primary-black;
+          border-radius: 0 0 $borderRadius $borderRadius;
+          overflow: hidden;
+          .progress-bar {
+            height: 100%;
+            background-color: $accent-green;
+            border-radius: 0 4px 4px 0;
+          }
+        }
+
+      }
+      @media screen and (max-width: 768px) {
+        // font-size: 12px;
+        .day-row.bottom {
+          height: max-content
+        }
+        .community {
+          display: none;
+          visibility: hidden;
+        }
+        .hours-container {
+          display: none !important;
+          visibility: hidden !important;
+        }
+
+
+        .date {
+          background-color: transparent !important;
+          color: black !important;
+          font-weight: bold;
+          left: 50% !important;
+          transform: translateX(-50%);
+          padding: 1vw !important;
+          font-size: 3vw;
+        }
+        
+        .hours-label {
+          display: none !important;
+          visibility: hidden !important;
+        }
+        .hours-label, .percent-label {
+          background-color: transparent !important;
+          color: black !important;
+          font-size: 2.5vw;
+        }
+        .percent-label {
+          display: block !important;
+          visibility: visible !important
+        }
+
+        .progress-bar-container {
+          display: block !important;
+          visibility: visible !important;
+        }
+      }
+    }
+  }
+
+  $spinner-time: 1s;
+
+  #loading {
+    background-color: $primary-black-transparent;
+    position: absolute;
+    inset: 0;
+    z-index: 9999;
+    display: grid;
+    place-items: center;
+
+    visibility: hidden;
+    display: none;
+  }
+  .loader {
+      border: 16px solid #00000022;
+      border-right: 16px solid $accent-yellow;
+      border-left: 16px solid $accent-yellow;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      animation: spin $spinner-time linear infinite;
+  }
+
+  @keyframes spin {
+      0% {
+          transform: rotate(0deg);
+      }
+
+      100% {
+          transform: rotate(360deg);
+      }
+  }
+}
