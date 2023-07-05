@@ -125,6 +125,14 @@ prayer-calendar {
 
         $borderRadius: .25rem;
         border-radius: $borderRadius;
+
+        &.pointer {
+          cursor: pointer;
+        }
+
+        &.dull {
+          opacity: .4;
+        }
         .date {
           position: absolute;
           top: 0;
@@ -153,14 +161,14 @@ prayer-calendar {
         //   display: grid;
         //   place-items: center;
         //   margin: auto 0;
-        //   .community {
-        //     margin: 0 .5rem;
-        //     text-align: center;
-        //     .community-name {
-        //       font-weight: bold;
-        //     }
-        //   }
         // }
+          .community {
+            margin: 0 .5rem;
+            text-align: center;
+            .community-name {
+              font-weight: bold;
+            }
+          }
         .hours-label, .percent-label {
           width: 100%;
           background-color: $primary-black;
@@ -182,11 +190,15 @@ prayer-calendar {
           background-color: $primary-black;
           padding: 1px;
           box-sizing: border-box;
-          a {
+          .hour {
             width: 100%;
             aspect-ratio: 1;
             background-color: white;
             position: relative;
+            margin: 0;
+            &.booked {
+              background-color: $accent-blue !important;
+            }
             &:hover::before,
             &:hover::after {
                 display: block;

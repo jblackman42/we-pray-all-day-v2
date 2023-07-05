@@ -17,6 +17,7 @@ html {
 	display: flex;
 	flex-direction: column;
 	overflow-x: hidden;
+	scroll-behavior: smooth;
 
 	background-color: $primary-white;
 }
@@ -45,6 +46,7 @@ p, ol, ul, li {
 	font-size: clamp(.8rem, 2vw, 1.25rem);
 	text-decoration: none;
 	color: $primary-white;
+	border: none;
 
 	background-color: $primary-black;
 	&.highlight {

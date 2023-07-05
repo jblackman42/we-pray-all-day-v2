@@ -327,6 +327,7 @@ html {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  scroll-behavior: smooth;
   background-color: #f5eee3;
 }
 
@@ -355,6 +356,7 @@ p, ol, ul, li {
   font-size: clamp(0.8rem, 2vw, 1.25rem);
   text-decoration: none;
   color: #f5eee3;
+  border: none;
   background-color: #2e2d2b;
   width: -moz-max-content;
   width: max-content;
@@ -779,6 +781,12 @@ prayer-calendar .calendar #days-grid .calendar-day {
   flex-direction: column;
   border-radius: 0.25rem;
 }
+prayer-calendar .calendar #days-grid .calendar-day.pointer {
+  cursor: pointer;
+}
+prayer-calendar .calendar #days-grid .calendar-day.dull {
+  opacity: 0.4;
+}
 prayer-calendar .calendar #days-grid .calendar-day .date {
   position: absolute;
   top: 0;
@@ -799,6 +807,13 @@ prayer-calendar .calendar #days-grid .calendar-day .day-row {
 prayer-calendar .calendar #days-grid .calendar-day .day-row.bottom {
   height: 51%;
   place-items: end;
+}
+prayer-calendar .calendar #days-grid .calendar-day .community {
+  margin: 0 0.5rem;
+  text-align: center;
+}
+prayer-calendar .calendar #days-grid .calendar-day .community .community-name {
+  font-weight: bold;
 }
 prayer-calendar .calendar #days-grid .calendar-day .hours-label, prayer-calendar .calendar #days-grid .calendar-day .percent-label {
   width: 100%;
@@ -821,17 +836,21 @@ prayer-calendar .calendar #days-grid .calendar-day .hours-container {
   padding: 1px;
   box-sizing: border-box;
 }
-prayer-calendar .calendar #days-grid .calendar-day .hours-container a {
+prayer-calendar .calendar #days-grid .calendar-day .hours-container .hour {
   width: 100%;
   aspect-ratio: 1;
   background-color: white;
   position: relative;
+  margin: 0;
 }
-prayer-calendar .calendar #days-grid .calendar-day .hours-container a:hover::before, prayer-calendar .calendar #days-grid .calendar-day .hours-container a:hover::after {
+prayer-calendar .calendar #days-grid .calendar-day .hours-container .hour.booked {
+  background-color: #fee32d !important;
+}
+prayer-calendar .calendar #days-grid .calendar-day .hours-container .hour:hover::before, prayer-calendar .calendar #days-grid .calendar-day .hours-container .hour:hover::after {
   display: block;
   visibility: visible;
 }
-prayer-calendar .calendar #days-grid .calendar-day .hours-container a::after {
+prayer-calendar .calendar #days-grid .calendar-day .hours-container .hour::after {
   display: none;
   visibility: hidden;
   content: attr(data-content);
@@ -849,7 +868,7 @@ prayer-calendar .calendar #days-grid .calendar-day .hours-container a::after {
   border-radius: 2px;
   padding: 0.25rem;
 }
-prayer-calendar .calendar #days-grid .calendar-day .hours-container a::before {
+prayer-calendar .calendar #days-grid .calendar-day .hours-container .hour::before {
   display: none;
   visibility: hidden;
   content: "";
