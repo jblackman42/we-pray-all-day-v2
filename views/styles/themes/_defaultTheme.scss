@@ -10,5 +10,17 @@ $primary-gray: #7f8c8d;
 $primary-white: #f5eee3;
 $secondary-white: #f7f1e3;
 
+$textPrimary: black;
+$textSecondary: white;
+$background: $primary-white;
+$primary: $secondary-black;
+$secondary: $primary-black;
+$accent: $accent-yellow;
+
+$red: #c0392b;
+$green: #27ae60;
+$blue: #2980b9;
+
 // sizing vars
 $container-width: clamp(50vw, 1280px, 100vw);
+$container-width-2: clamp(50vw, 1280px, 95vw);

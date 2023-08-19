@@ -8,10 +8,10 @@ nav {
   box-sizing: border-box;
 	font-family: Proxima-nova;
   position: relative;
-  z-index: 99999999999;
+  z-index: 99;
 
   .logo-container {
-    width: 150px;
+    width: clamp(100px, 14vw, 150px);
     img {
       max-width: 100%;
       display: block;
@@ -34,10 +34,14 @@ nav {
         display: block;
         text-decoration: none;
         color: $primary-black;
-        font-size: 20px;
+        font-size: clamp(12px, 1.5vw, 18px);
         padding: .75rem 2rem;
         border-radius: .25rem;
       }
+    }
+    #logout-btn {
+      display: none;
+      visibility: hidden;
     }
   }
 
@@ -59,12 +63,6 @@ nav {
       &:active {
         transform: scale(.9);
       }
-    }
-  }
-
-  @media screen and (max-width: 1024px) {
-    #links-container .link a {
-      font-size: 16px;
     }
   }
   @media screen and (max-width: 768px) {

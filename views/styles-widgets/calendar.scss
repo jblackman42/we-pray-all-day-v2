@@ -12,376 +12,352 @@ $primary-gray: #7f8c8d;
 $primary-white: #f5eee3;
 $secondary-white: #f7f1e3;
 
-$gridGap: .25rem;
-$calendarWidth: 1000px;
-$calendarDayWidth: calc((90vw / 7) - ($gridGap * 1));
-$calendarDayMaxWidth: calc(($calendarWidth / 7) - ($gridGap * 1));
-$calendarDayColor: $accent-yellow;
-$calendarFontColor: black;
+$container-width: clamp(50vw, 1280px, 100vw);
+$container-width-2: clamp(50vw, 1280px, 95vw);
 
 prayer-calendar {
     display: flex;
     justify-content: center;
-    background-color: $primary-white;
-    // background-color: $accent-blue;
+    width: 100%;
+    position: relative;
+    padding: 4rem 0;
+
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
     .calendar {
-        // background-color: ;
-        width: 100%;
-        margin: 0 auto;
+        display: grid;
+        width: $container-width;
+        box-sizing: border-box;
+        padding: 1rem;
+        .calendar-controls {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        // justify-content: center;
+        align-items: center;
 
-        #context {
-            text-align: center;
-            background-color: $secondary-black;
-            color: white;
-            box-sizing: content-box;
-            width: 100%;
-            h1 {
-                font-size: clamp(30px, 7vw, 96px);
-                padding-block: 2rem 1rem;
-                margin: 0;
+        @media screen and (max-width: 1440px) {
+            justify-content: center !important;
+            gap: 1rem;
+        }
+
+        .month-selector-container {
+            display: flex;
+            .btn {
+            display: grid;
+            place-items: center;
+            padding: 0;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            transform: translate(0);
             }
-            ol {
-                font-size: clamp(16px, 2vw, 24px);
-                font-weight: 100;
-                margin: 0 auto;
-                padding-bottom: 2rem;
-                padding-left: 1.25rem;
-                width: max-content;
-                max-width: 85vw;
-
-                counter-reset: list-counter;
-                list-style: none;
-                li {
-                    text-align: left;
-                    counter-increment: list-counter;
-                    padding: .25rem 0;
-                    font-size: clamp(14px, 2vw, 18px);
-                    &::before {
-                        content: counter(list-counter);
-                        color: black;
-
-                        width: clamp(14px, 2vw, 18px);
-                        height: clamp(14px, 2vw, 18px);
-                        padding: .5em;
-                        margin-right: 4px;
-                        border-radius: 50%;
-
-                        display: inline-grid;
-                        place-items: center;
-
-                        background-color: $accent-yellow;
-                    }
-                }
+            h3 {
+            height: max-content;
+            margin: auto 0;
+            text-align: center;
+            width: 200px;
             }
         }
 
-        #month-header {
+        #community-select {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background-color: white;
+            color: black;
+            outline: none;
+        }
+
+        #legend {
             display: flex;
-            justify-content: space-between;
-
-            width: $calendarWidth;
-            max-width: 90vw;
-            margin: 0 auto;
-            margin-top: 1rem;
-
-            @media screen and (max-width: 850px) {
-                flex-direction: column;
-                align-items: center;
+            #empty-square, #filled-square {
+            width: 20px;
+            height: 20px;
+            border: 1px solid black;
+            background-color: white;
             }
-
-            h3 {
-                margin: auto 2rem;
-                min-width: 150px;
-                text-align: center;
-                font-family: Proxima-nova;
+            #filled-square {
+            margin-left: 2rem;
+            background-color: $accent-blue;
             }
-
-            #btn-container {
-                display: flex;
-
-                .btn {
-                    border-radius: 50%;
-                    padding: .25rem;
-                    margin: auto 0;
-                    background-color: $primary-black;
-                    color: $primary-white;
-                    font-size: 16px;
-                    cursor: pointer;
-                    display: grid;
-                    place-items: center;
-                    border: none;
-                    height: max-content;
-                }
+            p {
+            margin: 0;
+            margin-left: 4px;
             }
-
-            #legend {
-                display: flex;
-
-                #empty-square,
-                #filled-square {
-                    width: calc(($calendarDayWidth / 8) - 3px);
-                    max-width: calc(($calendarDayMaxWidth / 8) - 3px);
-                    height: calc(($calendarDayWidth / 8) - 3px);
-                    max-height: calc(($calendarDayMaxWidth / 8) - 3px);
-                    background-color: $secondary-white;
-                    border: 1px solid $primary-gray;
-                    margin: auto .25rem;
-                }
-
-                #filled-square {
-                    background-color: $accent-blue;
-                    margin-left: 1rem;
-                }
-
-                @media screen and (max-width: 768px) {
-                    display: none;
-                    visibility: hidden;
-                }
+            @media screen and (max-width: 768px) {
+            display: none;
+            visibility: hidden;
             }
+        }
+        @media screen and (max-width: 768px) {
+            justify-content: center;
+            gap: 1rem;
+
+            #community-select {
+            font-size: clamp(10px, 3vw, 16px);
+            }
+        }
         }
 
         #weekdays {
-            width: $calendarWidth;
-            max-width: 90vw;
+        display: flex;
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        p {
+            text-align: center;
+            width: 100%;
 
-            display: flex;
-            gap: $gridGap;
-            margin: 0 auto;
-
-            p {
-                width: $calendarDayWidth;
-                max-width: $calendarDayMaxWidth;
-                text-align: center;
-                font-weight: bold;
-                text-transform: uppercase;
-                margin: 1rem 0;
-                @media screen and (max-width: 768px) {
-                    span {
-                        display: none;
-                        visibility: hidden;
-                    }
-                }
+            @media screen and (max-width: 768px) {
+            span {
+                display: none;
+                visibility: hidden;
             }
+            }
+        }
         }
 
         #days-grid {
-            width: $calendarWidth;
-            max-width: 90vw;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 4px;
+        font-size: clamp(8px, 1vw, 14px);
+        // font-size: 1vw;
+        // font-size: 8px;
+        // font-size: 14px;
 
+        .calendar-day {
+            border: none;
+            background-color: $accent-yellow;
+            color: black;
+            aspect-ratio: 1;
+            position: relative;
+            padding: 0;
+
+            display: flex;
+            flex-direction: column;
+            // justify-content: center;
+            // overflow: hidden;
+
+            $borderRadius: .25rem;
+            border-radius: $borderRadius;
+
+            &.pointer {
+            cursor: pointer;
+            }
+
+            &.dull {
+            opacity: .4;
+            }
+            .date {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: $primary-black;
+            color: $primary-white;
+            border-radius: 0 0 4px 0;
+            margin: 0;
+            padding: 4px 8px;
+
+            border-top-left-radius: $borderRadius;
+            }
+            .day-row {
             display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: $gridGap;
             place-items: center;
-            // width: 100%;
-            margin: 1rem auto;
-            margin-top: 0;
-
-            .calendar-day {
-                background-color: $calendarDayColor;
-                color: $calendarFontColor;
-                width: $calendarDayWidth;
-                max-width: $calendarDayMaxWidth;
-                height: $calendarDayWidth;
-                max-height: $calendarDayMaxWidth;
+            height: 49%;
+            width: 100%;
+            &.bottom {
+                height: 51%;
+                place-items: end;
+            }
+            }
+            // .title-container {
+            //   height: 100%;
+            //   width: 100%;
+            //   display: grid;
+            //   place-items: center;
+            //   margin: auto 0;
+            // }
+            .community {
+                margin: 0 .5rem;
                 text-align: center;
-                display: flex;
-                flex-direction: column;
-                text-decoration: none;
-                border: none;
-                position: relative;
-
-                box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-
-                cursor: pointer;
-                padding: 0;
-
-                
-                .date {
-                    // margin: .5rem 0 0 .5rem;
-                    margin: 1rem auto;
-                    font-size: 18px;
-                    font-weight: bold;
-                    text-transform: lowercase;
-                    text-align: left;
-                    @media screen and (max-width: 1024px) {
-                        margin: .5rem auto;
-                    }
-                }
-
-                .community-title {
-                    // margin-inline: .25rem auto;
-                    // margin-block: auto;
-                    font-size: 14px;
-                    background-color: $primary-black;
-                    color: white;
-                    margin: 0;
-                    width: 100%;
-                    margin-top: auto;
-                    padding-block: .25rem;
-                }
-                @media screen and (max-width: 1024px) {
-                    .community-title {
-                        display: none;
-                        visibility: hidden;
-                    }
-                    .hours-container {
-                        order: 999;
-                    }
-                }
-
-                .hours-container {
-                    background-color: $primary-black-transparent;
-                    display: grid;
-                    grid-template-columns: repeat(8, 1fr);
-                    gap: 1px;
-                    padding: 1px;
-                    // background-color: inherit;
-                    width: calc(100% - 2px);
-
-                    .hour {
-                        display: block;
-                        background-color: $secondary-white;
-                        box-sizing: border-box;
-                        width: 100%;
-                        margin: 0;
-                        aspect-ratio: 1 / 1;
-                        
-                        &.booked {
-                            background-color: $accent-blue;
-                        }
-                        
-                        position: relative;
-                        
-                        
-                    }
-                    .hour {
-                        &:hover::before,
-                        &:hover::after {
-                            display: block;
-                            visibility: visible;
-                        }
-
-                        &::after {
-                            display: none;
-                            visibility: hidden;
-
-                            content: attr(data-content);
-                            font-family: Proxima-nova;
-                            color: $primary-black;
-                            position: absolute;
-                            width: max-content;
-                            bottom: calc(100% + 3px);
-                            left: 50%;
-                            transform: translateX(-50%);
-                            z-index: 999;
-
-                            background-color: $primary-white;
-                            box-shadow: 0 0 0 1px $primary-black;
-                            border-radius: 2px;
-                            padding: .25rem;
-                        }
-
-                        &::before {
-                            display: none;
-                            visibility: hidden;
-
-                            content: '';
-                            position: absolute;
-                            width: 6px;
-                            height: 6px;
-                            background-color: $primary-white;
-                            border: 1px solid $primary-black;
-                            border-top-color: transparent;
-                            border-right-color: transparent;
-                            bottom: calc(100% - 2.5px);
-                            left: 50%;
-                            border-bottom-left-radius: 2px;
-                            z-index: 1000;
-
-                            transform-origin: bottom left;
-                            transform: rotate(-45deg);
-                        }
-                    }
-                }
-                    
-                &:disabled {
-                    cursor: not-allowed;
-                    // opacity: .8;
-                    * {
-                        cursor: not-allowed !important;
-                    }
-                    .hours-container .hour {
-                        &::after, &::before {
-                            content: '';
-                            display: none;
-                            visibility: hidden;
-                        }
-                    }
-                }
-                .progress-label {
-                    display: none;
-                    visibility: hidden;
-
-                    margin: 0;
-                    font-size: clamp(10px, 1.75vw, 12px);
-                    margin-top: auto;
-                    @media screen and (max-width: 425px) {
-                        margin: auto auto 0 2px;
-                        .covered-label {
-                            display: none;
-                            visibility: hidden;
-                        }
-                    }
-                }
-                .progress-bar-container {
-                    display: none;
-                    visibility: hidden;
-                    height: 6px;
-                    width: 100%;
-                    margin-right: auto;
-
-                    background-color: $primary-gray;
-                    overflow: hidden;
-
-                    .progress-bar {
-                        background-color: $accent-green;
-
-                        width: 100%;
-                        height: 100%;
-                    }
-                }
-                @media screen and (max-width: 1024px) {
-                    .progress-label {
-                        display: block;
-                        visibility: visible;
-                        margin-top: auto;
-                        width: 100%;
-                        text-align: center;
-                        // order: -1;
-                    }
-                }
-                @media screen and (max-width: 768px) {
-                    justify-content: center;
-                    align-items: center;
-                    border-radius: 3px;
-                    overflow: hidden;
-
-                    .progress-label, .progress-bar-container {
-                        display: block;
-                        visibility: visible;
-                    }
-
-                    p.date {
-                        margin: 0;
-                        margin-top: auto;
-                        font-size: clamp(11px, 3.5vw, 18px);
-                    }
-                    .community-title, .hours-container {
-                        display: none;
-                        visibility: hidden;
-                    }
+                .community-name {
+                font-weight: bold;
                 }
             }
+            .hours-label, .percent-label {
+            width: 100%;
+            background-color: $primary-black;
+            color: $primary-white;
+            margin: 0;
+            margin-top: auto;
+            padding: 4px 0;
+            }
+            .percent-label {
+            display: none;
+            visibility: hidden;
+            }
+
+            .hours-container {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 1px;
+            background-color: $primary-black;
+            padding: 1px;
+            box-sizing: border-box;
+            .hour {
+                width: 100%;
+                aspect-ratio: 1;
+                background-color: white;
+                position: relative;
+                margin: 0;
+                &.booked {
+                background-color: $accent-blue !important;
+                }
+                &:hover::before,
+                &:hover::after {
+                    display: block;
+                    visibility: visible;
+                }
+
+                &::after {
+                    display: none;
+                    visibility: hidden;
+
+                    content: attr(data-content);
+                    font-family: Proxima-nova;
+                    color: $primary-black;
+                    position: absolute;
+                    width: max-content;
+                    bottom: calc(100% + 3px);
+                    left: 50%;
+                    transform: translateX(-50%);
+                    z-index: 999;
+
+                    background-color: white;
+                    box-shadow: 0 0 5px 1px $primary-black;
+                    border-radius: 2px;
+                    padding: .25rem;
+                }
+
+                &::before {
+                    display: none;
+                    visibility: hidden;
+
+                    content: '';
+                    position: absolute;
+                    width: 6px;
+                    height: 6px;
+                    background-color: white;
+                    border: 1px solid $primary-black;
+                    border-top-color: transparent;
+                    border-right-color: transparent;
+                    bottom: calc(100% - 2.5px);
+                    left: 50%;
+                    border-bottom-left-radius: 2px;
+                    z-index: 1000;
+
+                    transform-origin: bottom left;
+                    transform: rotate(-45deg);
+                }
+            }
+            }
+            .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            display: none;
+            visibility: hidden;
+            background-color: $primary-black;
+            border-radius: 0 0 $borderRadius $borderRadius;
+            overflow: hidden;
+            .progress-bar {
+                height: 100%;
+                background-color: $accent-green;
+                border-radius: 0 4px 4px 0;
+            }
+            }
+
+        }
+        @media screen and (max-width: 768px) {
+            // font-size: 12px;
+            .day-row.bottom {
+            height: max-content
+            }
+            .community {
+            display: none;
+            visibility: hidden;
+            }
+            .hours-container {
+            display: none !important;
+            visibility: hidden !important;
+            }
+
+
+            .date {
+            background-color: transparent !important;
+            color: black !important;
+            font-weight: bold;
+            left: 50% !important;
+            transform: translateX(-50%);
+            padding: 1vw !important;
+            font-size: 3vw;
+            }
+            
+            .hours-label {
+            display: none !important;
+            visibility: hidden !important;
+            }
+            .hours-label, .percent-label {
+            background-color: transparent !important;
+            color: black !important;
+            font-size: 2.5vw;
+            }
+            .percent-label {
+            display: block !important;
+            visibility: visible !important
+            }
+
+            .progress-bar-container {
+            display: block !important;
+            visibility: visible !important;
+            }
+        }
+        }
+    }
+
+    $spinner-time: 1s;
+
+    #loading {
+        background-color: $primary-black-transparent;
+        position: absolute;
+        inset: 0;
+        z-index: 9999;
+        display: grid;
+        place-items: center;
+
+        visibility: hidden;
+        display: none;
+    }
+    .loader {
+        border: 16px solid #00000022;
+        border-right: 16px solid $accent-yellow;
+        border-left: 16px solid $accent-yellow;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        animation: spin $spinner-time linear infinite;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
         }
     }
 }

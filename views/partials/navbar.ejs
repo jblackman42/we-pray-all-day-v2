@@ -1,11 +1,14 @@
 <nav>
   <div class="logo-container">
-    <img src="/assets/final-logo-transparent.png" alt="WE PRAY ALL DAY">
+    <a href="/">
+      <img src="/assets/final-logo-transparent.png" alt="WE PRAY ALL DAY">
+    </a>
   </div>
   <div id="links-container">
     <div class="link"><a href="/notaboutus">Not About Us</a></div>
     <div class="link"><a href="/leaders">Leaders</a></div>
     <div class="link"><a href="/dashboard">Dashboard</a></div>
+    <div class="link" id="logout-btn"><a href="/logout">Logout</a></div>
     <div class="link highlight"><a href="/guide">Prayer Guide</a></div>
   </div>
   <div class="toggle-nav">
@@ -17,7 +20,23 @@
 
 <script>
   const toggleNavBtnDOM = document.getElementById('toggle-nav-btn');
-  const linksContainerDOM = document.getElementById('links-container')
+  const linksContainerDOM = document.getElementById('links-container');
 
-  toggleNavBtnDOM.addEventListener('click', () => linksContainerDOM.classList.toggle('open'))
+  toggleNavBtnDOM.addEventListener('click', () => linksContainerDOM.classList.toggle('open'));
+
+  (async () => {
+    const user = await axios({
+      method: 'get',
+      url: '/api/auth/user'
+    })
+    .then(response => response.data)
+    .catch(err => console.error(err));
+
+    if (user) {
+      // show logout button
+      const logoutBtnDOM = document.getElementById('logout-btn');
+      logoutBtnDOM.style.display = 'block';
+      logoutBtnDOM.style.visibility = 'visible';
+    }
+  })();
 </script>

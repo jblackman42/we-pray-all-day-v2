@@ -1,6 +1,23 @@
 const axios = require('axios');
 const qs = require('qs');
 
+const getAccessToken = async () => {
+    const data = await axios({
+        method: 'post',
+        url: 'https://my.pureheart.org/ministryplatformapi/oauth/connect/token',
+        data: qs.stringify({
+            grant_type: 'client_credentials',
+            scope: 'http://www.thinkministry.com/dataplatform/scopes/all',
+            client_id: process.env.CLIENT_ID,
+            client_secret: process.env.CLIENT_SECRET
+        })
+    })
+        .then(response => response.data)
+        .catch(err => console.log(err))
+        
+    return data.access_token;
+  }
+
 const ensureAuthenticated = async (req, res, next) => {
     const logging = 0;
 
@@ -63,6 +80,67 @@ const ensureAuthenticated = async (req, res, next) => {
     }
 }
 
+const ensurePrayerLeader = async (req, res, next) => {
+    const { user } = req.session;
+    if (!user || !user.userid) {
+        return res.render('pages/login', { error: 'invalid user' });
+    }
+
+    try {
+        const accessToken = await getAccessToken();
+        const response = await axios({
+            url: 'https://my.pureheart.org/ministryplatformapi/tables/WPAD_Authorized_Users',
+            params: {
+                $filter: `user_ID = ${user.userid}`
+            },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+
+        if (response.data.length === 0) {
+            return res.render('pages/login', { error: 'unauthorized' });
+        }
+
+        next();
+    } catch (error) {
+        console.error("Authorization error: ", error);
+        return res.render('pages/login', { error: 'internal server error' });
+    }
+}
+
+const ensurePrayerLeaderByID = async (req, res, next) => {
+    const { user } = req.session;
+    const { id } = req.params;
+    if (!user || !user.userid || !parseInt(id)) {
+        return res.status(401).send({error: 'unauthorized'}).end();
+    }
+
+    try {
+        const accessToken = await getAccessToken();
+        const response = await axios({
+            url: 'https://my.pureheart.org/ministryplatformapi/tables/WPAD_Authorized_Users',
+            params: {
+                $filter: `user_ID = ${user.userid} AND WPAD_Community_ID = ${parseInt(id)}`
+            },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+
+        if (response.data.length === 0) {
+            return res.render('pages/login', { error: 'unauthorized' });
+        }
+
+        next();
+    } catch (error) {
+        console.error("Authorization error: ", error);
+        return res.render('pages/login', { error: 'internal server error' });
+    }
+}
+
 const checkUserGroups = async (req, res, next) => {
     const data = await axios({
         method: 'post',
@@ -108,4 +186,6 @@ const checkUserGroups = async (req, res, next) => {
 module.exports = {
     ensureAuthenticated,
     checkUserGroups,
+    ensurePrayerLeader,
+    ensurePrayerLeaderByID
 }

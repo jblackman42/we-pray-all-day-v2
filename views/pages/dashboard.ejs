@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dashboard - We Pray All Day</title>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+    <%- include('../partials/loading'); %>
+    <%- include('../partials/navbar'); %>
+    <%- include('../partials/popup'); %>
+    
+    <div id="prayer-dashboard">
+        <div class="row">
+            <div id="user-leaderboard" class="chart-container">
+                <h1>Top Prayer Champions (YTD)</h1>
+            </div>
+            <div id="monthy-signups" class="chart-container">
+                <h1>Monthly Prayers (YTD)</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div id="ytd-signups-table"></div>
+
+            <div class="col">
+                <form id="prayer-point-form" onsubmit="submitPrayerPoints(event)">
+                    <div class="input-container">
+                        <label for="prayer-points">Prayer Points:</label>
+                        <textarea id="prayer-points" placeholder="Example: Unity in the church" maxlength="90" required disabled></textarea>
+                    </div>
+                    <div class="button-container">
+                        <button class="btn" id="toggle-edit-btn" type="button" onclick="toggleEditPrayerPoints()">Edit</button>
+                        <button class="btn highlight" id="submit-btn" type="submit" disabled>Submit</button>
+                    </div>
+                </form>
+                <div id="reservation-table-container">
+                    <div id="new-prayer-day-container">
+                        <p>Add new prayer day:</p>
+                        <div class="input-container">
+                            <input type="date" id="new-prayer-date">
+                            <button class="btn highlight" onclick="newReservationDate()">Submit</button>
+                        </div>
+                    </div>
+        
+                    <div id="reservation-table">
+                        <div class="data-row header">
+                            <p>My Prayer Days:</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/scripts/dashboard.js"></script>
+</body>
+</html>

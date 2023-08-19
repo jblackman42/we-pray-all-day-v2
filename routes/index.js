@@ -1,10 +1,11 @@
 const express = require('express');
 const navigation = express.Router();
-const ical = require('ical-generator');
+const ical = require('ical-generator').default;
 const fs = require('fs')
 const path = require('path')
 
-const { ensureAuthenticated, checkUserGroups } = require('../middleware/authorize');
+//authentication middleware
+const { ensureAuthenticated, ensurePrayerLeader } = require('../middleware/authorize.js')
 
 //home page
 navigation.get('/', (req, res) => {
@@ -26,7 +27,7 @@ navigation.get('/login', (req, res) => {
 navigation.get('/register', (req, res) => {
   res.render('pages/register')
 })
-navigation.get('/dashboard', ensureAuthenticated, checkUserGroups, (req, res) => {
+navigation.get('/dashboard', ensureAuthenticated, ensurePrayerLeader, (req, res) => {
   res.render('pages/dashboard')
 })
 
@@ -42,32 +43,54 @@ navigation.get('/logout', (req, res) => {
 
 navigation.get('/guide', (req, res) => {
   const filename = 'Apr-May 2023.pdf'
-  fs.readFile(path.join(__dirname, '..', 'views', 'assets', 'guides', filename), function (err,data){
-      res.contentType("application/pdf").send(data);
-  });
+  try {
+    fs.readFile(path.join(__dirname, '..', 'views', 'assets', 'guides', filename), function (err,data){
+        res.contentType("application/pdf").send(data);
+    });
+    
+  } catch (err) {
+    res.status(500).send("Error reading the file.");
+    console.error(err);
+  }
+
 })
 
 navigation.get('/calendar-invite', (req, res) => {
-  const {start_date, end_date} = req.query;
+  const {dates} = req.query;
 
-  const Start_Date = new Date(start_date);
-  const End_Date = new Date(Start_Date.getTime() + 3600000);
+  try {
+    const pattern = dates.split(',')
   
-  const cal = ical({
-    events: [
-        {
-            start: Start_Date,
-            end: End_Date,
-            summary: 'We Pray All Day',
-            description: 'An hour spent in prayer for Maricopa County.'
+    const cal = ical({name: "We Pray All Day Calendar"});
+  
+    pattern.forEach(date => {
+      const startDate = new Date(date);
+      const endDate = new Date(startDate.getTime() + 3600000);
+  
+      cal.createEvent({
+        start: startDate,
+        end: endDate,
+        summary: "Hour of Prayer",
+        description: "It's your time to pray! Here are some things to pray about:\nOur Hearts & Homes\nThe Church\nSalvations\nOurState\nOurNation\nAll the Earth\nYour Church\n\nAccess the full prayer guide here:\nhttps://weprayallday.com/guide",
+        organizer: {
+          name: "We Pray All Day",
+          email: "info@weprayallday.com"
         }
-    ]
-  });
-  
-  cal.serve(res);
+      });
+    });
+    
+    res.setHeader('Content-Disposition', 'attachment; filename="HourOfPrayer.ics"');
+    res.setHeader('Content-Type', 'text/calendar');
+    res.send(cal.toString());
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({error: 'Something went wrong. Please try again later.'})
+  }
+})
 
 
-  // res.send({msg: 'help me'})
+navigation.get('/test', (req, res) => {
+  res.render('pages/test')
 })
 
 

@@ -321,7 +321,7 @@ template {
 body,
 html {
   font-family: Tropoline;
-  min-height: 100vh;
+  min-height: 100dvh;
   width: 100%;
   max-width: 100vw;
   display: flex;
@@ -349,14 +349,20 @@ p, ol, ul, li {
   box-sizing: border-box;
 }
 
+.grid-center {
+  display: grid;
+  place-items: center;
+}
+
 .btn {
   display: block;
   font-family: Proxima-nova;
-  font-weight: bold;
-  font-size: clamp(0.8rem, 2vw, 1.25rem);
+  font-weight: 300;
+  font-size: clamp(1rem, 2vw, 1.25rem);
   text-decoration: none;
   color: #f5eee3;
   border: none;
+  cursor: pointer;
   background-color: #2e2d2b;
   width: -moz-max-content;
   width: max-content;
@@ -382,10 +388,10 @@ nav {
   box-sizing: border-box;
   font-family: Proxima-nova;
   position: relative;
-  z-index: 99999999999;
+  z-index: 99;
 }
 nav .logo-container {
-  width: 150px;
+  width: clamp(100px, 14vw, 150px);
 }
 nav .logo-container img {
   max-width: 100%;
@@ -410,9 +416,13 @@ nav #links-container .link a {
   display: block;
   text-decoration: none;
   color: #2e2d2b;
-  font-size: 20px;
+  font-size: clamp(12px, 1.5vw, 18px);
   padding: 0.75rem 2rem;
   border-radius: 0.25rem;
+}
+nav #links-container #logout-btn {
+  display: none;
+  visibility: hidden;
 }
 nav .toggle-nav {
   display: none;
@@ -432,11 +442,6 @@ nav .toggle-nav #toggle-nav-btn i {
 }
 nav .toggle-nav #toggle-nav-btn:active {
   transform: scale(0.9);
-}
-@media screen and (max-width: 1024px) {
-  nav #links-container .link a {
-    font-size: 16px;
-  }
 }
 @media screen and (max-width: 768px) {
   nav .toggle-nav {
@@ -968,6 +973,203 @@ prayer-calendar .loader {
   }
 }
 
+#loadingScreen {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6666666667);
+  color: white;
+  font-size: clamp(1rem, 6vw, 2rem);
+  display: grid;
+  place-items: center;
+  visibility: hidden;
+  display: none;
+  z-index: 999;
+}
+#loadingScreen h3 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+}
+#loadingScreen #loading-bar {
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+  position: absolute;
+  overflow: hidden;
+}
+#loadingScreen #loading-bar #progress {
+  width: 100%;
+  height: 0%;
+  background-color: #fcbb09;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.loader {
+  /* Light grey */
+  border: 16px solid rgba(0, 0, 0, 0.1333333333);
+  /* Blue */
+  border-right: 16px solid #fcbb09;
+  border-left: 16px solid #fcbb09;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.popup-container {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: grid;
+  place-items: center;
+  font-family: Proxima-nova;
+  z-index: 9999999;
+}
+.popup-container.hidden {
+  display: none;
+  visibility: hidden;
+}
+.popup-container .popup {
+  background-color: #f5eee3;
+  border-radius: 4px;
+  width: 500px;
+  max-width: 90vw;
+  overflow: hidden;
+}
+.popup-container .popup #title-row {
+  padding: 1rem;
+  background-color: #fcbb09;
+  color: black;
+}
+.popup-container .popup #title-row #popup-title {
+  font-weight: bold;
+  margin: 0;
+}
+.popup-container .popup #content {
+  padding: 1rem;
+}
+.popup-container .popup #content #popup-content {
+  margin: 0;
+}
+.popup-container .popup #content #popup-content p {
+  margin: 0;
+}
+.popup-container .popup #btn-row {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  border-top: 2px solid #7f8c8d;
+}
+.popup-container .popup #btn-row .popup-btn {
+  border: none;
+  padding: 0.5rem 1rem;
+  background-color: #fcbb09;
+  color: black;
+  font-weight: bold;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.input-option {
+  align-items: flex-start;
+  display: flex;
+  gap: 0.5rem;
+}
+.input-option .options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+.input-option:not(:last-of-type) {
+  margin-bottom: 0.5rem;
+}
+.input-option span {
+  color: white;
+}
+.input-option input[type=number] {
+  width: 3rem;
+  color: black;
+}
+.input-option input[type=radio] {
+  height: 100%;
+}
+.input-option select, .input-option input {
+  height: 29px;
+  padding-block: 0 !important;
+}
+.input-option select:disabled, .input-option select:disabled, .input-option input:disabled, .input-option input:disabled {
+  opacity: 0.5;
+}
+
+#date-container {
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: grid;
+  place-items: center;
+}
+#date-container.disabled {
+  opacity: 0.5;
+}
+#date-container.disabled::after {
+  display: none;
+}
+#date-container.highlight::after {
+  border-color: #fcbb09;
+}
+#date-container::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 18px;
+  background-color: transparent;
+  border: 2px solid transparent;
+  border-radius: 50%;
+}
+#date-container #dates {
+  z-index: 2;
+  position: absolute;
+  background-color: #2e2d2b;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 8px 0px;
+  list-style: none;
+  top: -4px;
+  right: -4px;
+  width: -moz-max-content;
+  width: max-content;
+  display: none;
+  visibility: hidden;
+}
+#date-container:not(.disabled):hover .hover-icon, #date-container:not(.disabled):focus .hover-icon {
+  outline: none;
+}
+#date-container:not(.disabled):hover #dates, #date-container:not(.disabled):focus #dates {
+  display: block;
+  visibility: visible;
+}
+
 .home-content {
   display: flex;
   gap: 4rem;
@@ -1048,4 +1250,1054 @@ prayer-calendar .loader {
   place-items: center;
   background-color: #fcbb09;
   border-radius: 50%;
+}
+
+#sign-up-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 1280px;
+  max-width: 90vw;
+  margin: 1rem auto;
+  font-family: Proxima-nova;
+  position: relative;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+#sign-up-form > #back-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #2980b9;
+}
+#sign-up-form > #prayer-date {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+}
+#sign-up-form > #community-champions {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+#sign-up-form > .input-container {
+  display: flex;
+  flex-direction: column;
+  width: calc(50% - 0.5rem);
+}
+@media screen and (max-width: 768px) {
+  #sign-up-form > .input-container {
+    width: 100%;
+  }
+}
+#sign-up-form > .input-container.full-width {
+  width: 100%;
+}
+#sign-up-form > .input-container > input {
+  padding: 0.5rem 0.25rem;
+  border: none;
+  border-radius: 2px;
+}
+#sign-up-form > .input-container > textarea {
+  resize: none;
+  border: none;
+}
+#sign-up-form > .recurring-container {
+  width: 100%;
+  display: flex;
+  margin-top: 0.5rem;
+}
+#sign-up-form > .recurring-container input[type=checkbox] {
+  margin-inline: auto 0.5rem;
+}
+#sign-up-form > .recurring-container input[type=checkbox]:checked ~ label span {
+  opacity: 1;
+}
+#sign-up-form > .recurring-container label span {
+  opacity: 0.5;
+}
+#sign-up-form > .dropdown-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+#sign-up-form > .dropdown-container select {
+  padding: 0.5rem 0.25rem;
+  border: none;
+  border-radius: 2px;
+  background-color: white;
+  color: black;
+}
+#sign-up-form > .time-container {
+  width: 100%;
+  overflow-x: auto;
+}
+@media screen and (max-width: 768px) {
+  #sign-up-form > .time-container {
+    padding-bottom: 10px;
+  }
+}
+#sign-up-form > .recurring-container {
+  display: flex;
+  position: relative;
+  margin-right: 1.2em;
+}
+#sign-up-form > .recurring-container input, #sign-up-form > .recurring-container select {
+  padding: 0.5rem 0.25rem;
+  margin: 4px 0;
+  border: none;
+  border-radius: 2px;
+  background-color: white;
+  color: black;
+}
+#sign-up-form > .recurring-container input[type=number] {
+  width: 50px;
+}
+#sign-up-form > .recurring-container input:disabled, #sign-up-form > .recurring-container select:disabled {
+  opacity: 0.5;
+}
+#sign-up-form > .recurring-container input[type=checkbox]:not(:checked) ~ #update-icon-container {
+  opacity: 0.5;
+}
+#sign-up-form > .recurring-container input[type=checkbox]:not(:checked) ~ #update-icon-container #update-date-container {
+  visibility: hidden !important;
+}
+#sign-up-form > .recurring-container label {
+  height: -moz-max-content;
+  height: max-content;
+  margin: auto 0;
+  white-space: normal;
+  max-width: 90vw;
+}
+#sign-up-form > .recurring-container label:last-of-type {
+  text-align: right;
+}
+#sign-up-form > .recurring-container #update-icon-container {
+  background-color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(100%, -50%);
+  z-index: 9;
+  border-radius: 50%;
+  font-size: 0.6em;
+  height: 2em;
+  width: 2em;
+  display: grid;
+  place-items: center;
+}
+#sign-up-form > .recurring-container #update-icon-container.highlight {
+  outline: 2px solid #fcbb09;
+}
+#sign-up-form > .recurring-container #update-icon-container:hover #update-date-container {
+  visibility: visible;
+}
+#sign-up-form > .recurring-container #update-icon-container #update-date-container {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: -moz-max-content;
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  font-size: 1rem;
+}
+#sign-up-form > .recurring-container #update-icon-container #update-date-container p {
+  margin: 0;
+}
+@media screen and (max-width: 964px) {
+  #sign-up-form > .recurring-container {
+    flex-wrap: wrap;
+    margin-right: 0;
+  }
+  #sign-up-form > .recurring-container label:last-of-type {
+    width: 100%;
+    text-align: left;
+    white-space: wrap;
+  }
+  #sign-up-form > .recurring-container input[type=checkbox] {
+    margin-inline: 0.5rem auto;
+  }
+  #sign-up-form > .recurring-container #update-icon-container {
+    transform: translate(0%, -50%);
+  }
+}
+#sign-up-form #hours-options {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  margin: 0 auto;
+  gap: 0.5rem;
+}
+#sign-up-form #hours-options > .checkbox-container {
+  display: grid;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 2px;
+  position: relative;
+}
+#sign-up-form #hours-options > .checkbox-container > input[type=radio] {
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+#sign-up-form #hours-options > .checkbox-container > input[type=radio]:focus-within ~ label {
+  outline: 2px solid black;
+}
+#sign-up-form #hours-options > .checkbox-container > input[type=radio]:checked ~ label {
+  background-color: #fee32d;
+  outline: 2px solid #2ecc71;
+}
+#sign-up-form #hours-options > .checkbox-container > input[type=radio].covered ~ label {
+  background-color: #fee32d;
+}
+#sign-up-form #hours-options > .checkbox-container > label {
+  background-color: #FFF;
+  padding: 0.5rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  text-align: center;
+  border-radius: 2px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+#sign-up-form > .form-footer {
+  display: flex;
+  width: 100%;
+}
+#sign-up-form > .form-footer > #curr-time {
+  margin: 0.5rem 0;
+  line-height: 30px;
+}
+#sign-up-form > .form-footer > button[type=submit] {
+  margin-left: auto;
+}
+
+.about-us {
+  width: clamp(50vw, 1280px, 90vw);
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+.about-us h1 {
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  margin: 0;
+}
+.about-us p {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  margin: 0;
+}
+.about-us .flex-1 {
+  flex: 1;
+}
+.about-us .flex-2 {
+  flex: 2;
+}
+.about-us a.contact-btn {
+  background-color: #fcbb09;
+  color: currentColor;
+  margin-left: auto;
+  margin-block: 1rem;
+}
+.about-us .video-container {
+  display: flex;
+  justify-content: center;
+  margin: 1rem auto;
+}
+.about-us .video-container iframe {
+  width: clamp(50vw, 1280px, 90vw);
+  aspect-ratio: 16/9;
+}
+@media screen and (max-width: 768px) {
+  .about-us {
+    flex-direction: column;
+  }
+}
+
+#leader {
+  width: clamp(50vw, 1280px, 90vw);
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+#leader.list p {
+  padding-right: 0.5rem;
+  border-right: 1px solid rgba(0, 0, 0, 0.2666666667);
+}
+#leader.list p:last-of-type {
+  padding: 0;
+  border: none !important;
+}
+#leader.list p:not(:first-of-type) {
+  padding-left: 0.5rem;
+}
+@media screen and (max-width: 768px) {
+  #leader.list {
+    flex-direction: column;
+  }
+  #leader.list p {
+    padding: 1rem 0 !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2666666667) !important;
+  }
+}
+#leader h1 {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  margin: 0;
+}
+#leader p {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  margin: 0;
+}
+#leader .col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#leader a.register-btn {
+  background-color: #fcbb09;
+  color: currentColor;
+  margin-left: auto;
+  margin-block: 1rem;
+}
+#leader .video-container {
+  display: flex;
+  justify-content: center;
+  margin: 1rem auto;
+}
+#leader .video-container iframe {
+  width: clamp(50vw, 1280px, 90vw);
+  aspect-ratio: 16/9;
+}
+
+.forms-container {
+  font-family: Proxima-Nova;
+}
+.forms-container #register-form {
+  width: 500px;
+  max-width: 90vw;
+  background-color: #282828;
+  box-sizing: content-box;
+  padding-top: 2rem;
+  border-radius: 0.75rem;
+}
+.forms-container #register-form .title {
+  margin: 0;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  color: white;
+  font-size: 2em;
+}
+.forms-container #register-form > .progress {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+  position: relative;
+}
+.forms-container #register-form > .progress .step {
+  --delay: 300ms;
+  background-color: white;
+  padding: 10px;
+  border-radius: 50%;
+  z-index: 99;
+  background-color: white;
+  position: relative;
+  transition: background-color 150ms linear;
+  transition-delay: var(--delay);
+}
+.forms-container #register-form > .progress .step:nth-child(1) {
+  background-color: #fcbb09;
+}
+.forms-container #register-form > .progress .step:nth-child(1)::after {
+  color: #fcbb09;
+}
+.forms-container #register-form > .progress .step i, .forms-container #register-form > .progress .step svg {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+}
+.forms-container #register-form > .progress .step::after {
+  content: attr(data-title);
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, 0%);
+  color: white;
+  transition: color 150ms linear;
+  transition-delay: var(--delay);
+}
+.forms-container #register-form > .progress::before, .forms-container #register-form > .progress::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background-color: white;
+  top: calc(50% - 1px);
+}
+.forms-container #register-form > .progress::after {
+  background-color: #fcbb09;
+  left: 0;
+  width: 12.5%;
+  transition: width 300ms linear;
+}
+.forms-container #register-form > .progress.page-1::after {
+  width: 37.5%;
+}
+.forms-container #register-form > .progress.page-1 .step:nth-child(2) {
+  background-color: #fcbb09;
+}
+.forms-container #register-form > .progress.page-1 .step:nth-child(2)::after {
+  color: #fcbb09;
+}
+.forms-container #register-form > .progress.page-2::after {
+  width: 62.5%;
+}
+.forms-container #register-form > .progress.page-2 .step:nth-child(2) {
+  background-color: #fcbb09;
+}
+.forms-container #register-form > .progress.page-2 .step:nth-child(2)::after {
+  color: #fcbb09;
+}
+.forms-container #register-form > .progress.page-2 .step:nth-child(3) {
+  background-color: #fcbb09;
+}
+.forms-container #register-form > .progress.page-2 .step:nth-child(3)::after {
+  color: #fcbb09;
+}
+.forms-container #register-form > .progress.page-3::after {
+  width: 87.5%;
+}
+.forms-container #register-form > .progress.page-3 .step:nth-child(2) {
+  background-color: #fcbb09;
+}
+.forms-container #register-form > .progress.page-3 .step:nth-child(2)::after {
+  color: #fcbb09;
+}
+.forms-container #register-form > .progress.page-3 .step:nth-child(3) {
+  background-color: #fcbb09;
+}
+.forms-container #register-form > .progress.page-3 .step:nth-child(3)::after {
+  color: #fcbb09;
+}
+.forms-container #register-form > .progress.page-3 .step:nth-child(4) {
+  background-color: #fcbb09;
+}
+.forms-container #register-form > .progress.page-3 .step:nth-child(4)::after {
+  color: #fcbb09;
+}
+.forms-container #register-form > .progress.done::after {
+  width: 100%;
+}
+.forms-container #register-form .error-container {
+  display: flex;
+  justify-content: center;
+}
+.forms-container #register-form .error-container p {
+  margin: 0;
+  font-weight: bold;
+  color: #e74c3c;
+}
+.forms-container .page {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 1rem;
+  padding: 1rem;
+  padding-top: 0;
+  box-sizing: border-box;
+}
+.forms-container .page #pattern-label {
+  color: white;
+  font-size: 18px;
+  margin: 0.25rem 0;
+}
+.forms-container .page .input-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 18px;
+  width: calc(50% - 0.5rem);
+  position: relative;
+}
+.forms-container .page .input-container.full-width {
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .forms-container .page .input-container {
+    width: 100%;
+  }
+}
+.forms-container .page .input-container label {
+  position: absolute;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.6666666667);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  transform-origin: bottom left;
+  white-space: nowrap;
+}
+.forms-container .page .input-container phone-number-input ~ label {
+  transition: transform 100ms ease-in-out, color 100ms linear;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  white-space: break-spaces;
+  cursor: text;
+}
+.forms-container .page .input-container phone-number-input:has(input:not(:-moz-placeholder-shown)) ~ label {
+  transform: scale(0.8) translate(0, calc(-100% - 4px));
+  color: white;
+  cursor: default;
+}
+.forms-container .page .input-container phone-number-input:has(input:not(:placeholder-shown)) ~ label {
+  transform: scale(0.8) translate(0, calc(-100% - 4px));
+  color: white;
+  cursor: default;
+}
+.forms-container .page .input-container input, .forms-container .page .input-container select, .forms-container .page .input-container textarea {
+  color: white !important;
+  border: solid rgba(255, 255, 255, 0.4) 1px !important;
+  background-color: transparent !important;
+  font-size: 18px;
+  border-radius: 2px;
+  outline: none;
+  padding: 4px 2px;
+  height: 30px;
+  box-sizing: border-box;
+}
+.forms-container .page .input-container input ~ label, .forms-container .page .input-container select ~ label, .forms-container .page .input-container textarea ~ label {
+  transition: transform 100ms ease-in-out, color 100ms linear;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  white-space: break-spaces;
+  cursor: text;
+}
+.forms-container .page .input-container input:invalid, .forms-container .page .input-container select:invalid, .forms-container .page .input-container textarea:invalid {
+  outline: 2px solid #e74c3c;
+}
+.forms-container .page .input-container input:invalid ~ label::before, .forms-container .page .input-container select:invalid ~ label::before, .forms-container .page .input-container textarea:invalid ~ label::before {
+  content: "Invalid";
+  position: absolute;
+  color: #e74c3c;
+  right: -25%;
+}
+.forms-container .page .input-container input:not(:-moz-placeholder-shown) ~ label, .forms-container .page .input-container select:not(:-moz-placeholder-shown) ~ label, .forms-container .page .input-container textarea:not(:-moz-placeholder-shown) ~ label {
+  transform: scale(0.8) translate(0, calc(-100% - 4px));
+  color: white;
+  cursor: default;
+}
+.forms-container .page .input-container input:not(:placeholder-shown) ~ label, .forms-container .page .input-container select:not(:placeholder-shown) ~ label, .forms-container .page .input-container textarea:not(:placeholder-shown) ~ label {
+  transform: scale(0.8) translate(0, calc(-100% - 4px));
+  color: white;
+  cursor: default;
+}
+.forms-container .page .input-container input option, .forms-container .page .input-container select option, .forms-container .page .input-container textarea option {
+  color: black;
+}
+.forms-container .page .input-container input option:hover, .forms-container .page .input-container select option:hover, .forms-container .page .input-container textarea option:hover {
+  background-color: #fcbb09;
+}
+.forms-container .page .input-container select {
+  padding: 0;
+  text-indent: 2px;
+}
+.forms-container .page .input-container textarea {
+  box-sizing: content-box;
+  resize: none;
+  outline: none;
+  height: 42px;
+}
+.forms-container .page .input-container textarea ~ label {
+  height: -moz-max-content;
+  height: max-content;
+}
+.forms-container .btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.forms-container .btn-container button {
+  background: #fcbb09;
+  color: currentColor;
+  border: none;
+  text-transform: capitalize;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+#loginForm,
+#signUpForm {
+  background-color: #282828;
+  color: white;
+  max-width: 450px;
+}
+#loginForm h1,
+#signUpForm h1 {
+  text-align: center;
+}
+#loginForm .help-msg,
+#signUpForm .help-msg {
+  margin: 0;
+  text-align: center;
+  font-size: 80%;
+}
+#loginForm .row,
+#signUpForm .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#loginForm .row a,
+#signUpForm .row a {
+  margin-top: 0.5rem;
+  color: currentColor;
+}
+#loginForm .row label, #loginForm .row a,
+#signUpForm .row label,
+#signUpForm .row a {
+  font-size: clamp(12px, 2vw, 16px);
+}
+#loginForm .inputs,
+#signUpForm .inputs {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  position: relative;
+}
+#loginForm .inputs input,
+#signUpForm .inputs input {
+  border: none;
+  outline: none;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1333333333);
+  padding: 0.75rem 1rem;
+}
+#loginForm .inputs input:last-of-type,
+#signUpForm .inputs input:last-of-type {
+  border: none;
+}
+#loginForm .inputs #togglePassword,
+#signUpForm .inputs #togglePassword {
+  color: black;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0.9rem 0.5rem;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+#loginForm .remember-input,
+#signUpForm .remember-input {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  gap: 0.25em;
+}
+#loginForm .login,
+#loginForm .signIn,
+#signUpForm .login,
+#signUpForm .signIn {
+  color: black;
+  background-color: #fcbb09;
+  border: none;
+  width: 100%;
+  padding: 0.75rem;
+  margin: 1rem 0;
+  margin-top: 0.5rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+#loginForm .login:hover, #loginForm .login:focus-within,
+#loginForm .signIn:hover,
+#loginForm .signIn:focus-within,
+#signUpForm .login:hover,
+#signUpForm .login:focus-within,
+#signUpForm .signIn:hover,
+#signUpForm .signIn:focus-within {
+  background-color: #eaae07;
+}
+#loginForm .form-error,
+#signUpForm .form-error {
+  color: #e74c3c;
+  text-align: center;
+  text-decoration: underline;
+  margin: 0;
+  margin-top: 1rem;
+}
+
+#loginForm,
+#signUpForm {
+  width: clamp(30vw, 25rem, 90vw);
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  padding: 5rem 3rem;
+  box-sizing: border-box;
+  border-radius: 0.75rem;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+@media screen and (max-width: 380px) {
+  #loginForm,
+  #signUpForm {
+    padding-inline: 1rem;
+  }
+}
+#loginForm .loginOption,
+#signUpForm .loginOption {
+  background-color: transparent;
+  color: currentColor;
+  width: 100%;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+#loginForm .loginOption:hover, #loginForm .loginOption.focus-within,
+#signUpForm .loginOption:hover,
+#signUpForm .loginOption.focus-within {
+  text-decoration: underline;
+}
+#loginForm .loginOption a,
+#signUpForm .loginOption a {
+  color: currentColor;
+  text-decoration: none;
+}
+#loginForm .loginOption a:active,
+#signUpForm .loginOption a:active {
+  filter: brightness(0.6);
+}
+
+#prayer-dashboard {
+  display: flex;
+  flex-direction: column;
+  width: clamp(50vw, 1280px, 95vw);
+  margin: 2rem auto;
+}
+#prayer-dashboard .row {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+#prayer-dashboard .row .col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+#prayer-dashboard .row .chart-container {
+  width: calc(640px - 1rem);
+  max-width: 90vw;
+}
+#prayer-dashboard .row .chart-container h1 {
+  margin: 0;
+  text-align: center;
+  font-size: 1.5em;
+  font-family: Proxima-nova, "Sans-serif";
+}
+
+#table-container {
+  display: grid;
+  place-items: center;
+  font-size: clamp(8px, 2.25vw, 16px);
+  max-width: 90vw;
+  margin: 1rem auto;
+}
+#table-container p {
+  font-size: inherit;
+  white-space: nowrap;
+}
+#table-container #table-header {
+  display: flex;
+  width: 100%;
+  font-weight: bold;
+  background-color: #2e2d2b;
+  color: white;
+  border-bottom: 2px solid #282828;
+}
+#table-container #table-header p {
+  border-left: 2px solid #282828;
+  padding: 0.5em;
+  margin: 0;
+  flex: 1 1 0px;
+}
+#table-container #table-header p:first-of-type {
+  border-left: none;
+}
+#table-container #table-header p.date, #table-container #table-header p.hours {
+  flex-grow: 2;
+}
+#table-container #roster-table {
+  position: relative;
+  width: 100%;
+  max-height: 600px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  filter: drop-shadow(rgba(0, 0, 0, 0.24) 0px 3px 8px);
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+#table-container #roster-table::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f6f6f6;
+}
+#table-container #roster-table::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
+#table-container #roster-table::-webkit-scrollbar-thumb {
+  background: #2e2d2b;
+  border-radius: 5px;
+  border: 1px solid #f6f6f6;
+}
+#table-container #roster-table::-webkit-scrollbar-thumb:hover {
+  background: #4e4d4b;
+  cursor: pointer;
+}
+#table-container #roster-table .row {
+  display: flex;
+  width: 100%;
+  position: sticky;
+}
+#table-container #roster-table .row:nth-child(odd) {
+  background-color: #f6f6f6;
+}
+#table-container #roster-table .row:nth-child(even) {
+  background-color: #ffffff;
+}
+#table-container #roster-table .row.day {
+  cursor: pointer;
+}
+#table-container #roster-table .row.day:nth-child(4n) {
+  background-color: #f6f6f6;
+}
+#table-container #roster-table .row.highlight {
+  outline: 2px solid #2ecc71;
+}
+#table-container #roster-table .row#header {
+  font-weight: bold;
+  background-color: #2e2d2b;
+  color: white;
+  border-bottom: 2px solid #282828;
+}
+#table-container #roster-table .row#header p {
+  border-left: 2px solid #282828;
+}
+#table-container #roster-table .row#header p:first-of-type {
+  border-left: none;
+}
+#table-container #roster-table .row p {
+  padding: 0.5em;
+  margin: 0;
+  flex: 1 1 0px;
+}
+#table-container #roster-table .row p.date, #table-container #roster-table .row p.hours {
+  flex-grow: 2;
+}
+#table-container #roster-table .dropdown-table {
+  margin-block: 1px;
+  width: 100%;
+  height: 0px;
+  overflow: hidden;
+  overflow-x: auto;
+}
+#table-container #roster-table .dropdown-table .dropdown-scroll-container {
+  min-width: -moz-max-content;
+  min-width: max-content;
+  width: 100%;
+  margin-left: 16px;
+}
+#table-container #roster-table .dropdown-table.open {
+  height: auto;
+}
+#table-container #roster-table .dropdown-table p {
+  text-align: left;
+}
+#table-container #roster-table .dropdown-table p.name {
+  flex-grow: 1;
+}
+#table-container #roster-table .dropdown-table p.datetime {
+  flex-grow: 2;
+}
+#table-container #roster-table .dropdown-table p.email {
+  flex-grow: 2;
+}
+#table-container #roster-table .dropdown-table p.phone {
+  flex-grow: 1;
+}
+#table-container #csv-download {
+  margin: 1rem 0;
+  margin-left: auto;
+}
+#table-container #table-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+#table-container #table-footer #csv-download {
+  font-size: 1em;
+  margin: 0;
+}
+#table-container #table-footer p {
+  margin: 0;
+  font-weight: bold;
+}
+
+#prayer-point-form {
+  width: 100%;
+  max-width: 90vw;
+  margin: 0 auto;
+  font-family: Proxima-nova, sans-serif;
+}
+#prayer-point-form .input-container {
+  display: flex;
+  flex-direction: column;
+}
+#prayer-point-form .input-container textarea {
+  resize: none;
+  border: none;
+  background-color: white;
+  font-size: 18px;
+  border-radius: 2px;
+  outline: none;
+  padding: 4px 2px;
+  height: 60px;
+  box-sizing: border-box;
+}
+#prayer-point-form .button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+#prayer-point-form .button-container button {
+  font-size: 1em;
+  margin: 0;
+  padding: 0.5rem 1.5rem;
+}
+#prayer-point-form .button-container button:disabled {
+  display: none;
+  visibility: hidden;
+}
+
+#reservation-table-container {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  max-width: 90vw;
+  margin: 0 auto;
+  font-family: Proxima-nova, sans-serif;
+}
+#reservation-table-container #reservation-table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  filter: drop-shadow(rgba(0, 0, 0, 0.24) 0px 3px 8px);
+}
+#reservation-table-container #reservation-table .data-row {
+  display: flex;
+}
+#reservation-table-container #reservation-table .data-row:not(.header) {
+  margin-bottom: 4px;
+}
+#reservation-table-container #reservation-table .data-row:last-of-type {
+  margin-bottom: 0;
+}
+#reservation-table-container #reservation-table .data-row:nth-child(odd) {
+  background-color: #f6f6f6;
+}
+#reservation-table-container #reservation-table .data-row:nth-child(even) {
+  background-color: #ffffff;
+}
+#reservation-table-container #reservation-table .data-row.header {
+  font-weight: bold;
+  background-color: #2e2d2b;
+  color: white;
+}
+#reservation-table-container #reservation-table .data-row.header p {
+  border-bottom: 2px solid #282828;
+  border-right: 2px solid #282828;
+}
+#reservation-table-container #reservation-table .data-row.header p:last-of-type {
+  border-right: none;
+}
+#reservation-table-container #reservation-table .data-row .date-label, #reservation-table-container #reservation-table .data-row p {
+  padding: 0.5em;
+  margin: 0;
+  margin-right: auto;
+}
+#reservation-table-container #reservation-table .data-row .btn {
+  border: none;
+  background-color: transparent;
+  margin: 0;
+  padding: 0 0.5rem;
+}
+#reservation-table-container #reservation-table .data-row .btn.reservation-edit-btn {
+  color: #27ae60;
+}
+#reservation-table-container #reservation-table .data-row .btn.reservation-save-btn {
+  color: #27ae60;
+  display: none;
+  visibility: hidden;
+}
+#reservation-table-container #reservation-table .data-row .btn.reservation-cancel-btn {
+  color: #e74c3c;
+  display: none;
+  visibility: hidden;
+}
+#reservation-table-container #reservation-table .data-row .btn.reservation-delete-btn {
+  color: #34495e;
+  display: none;
+  visibility: hidden;
+}
+#reservation-table-container #new-prayer-day-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+#reservation-table-container #new-prayer-day-container p {
+  margin: 0;
+  text-align: left;
+}
+#reservation-table-container #new-prayer-day-container .input-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
+#reservation-table-container #new-prayer-day-container .input-container button {
+  font-size: 1em;
+  margin: 0;
+  padding: 0.5rem 1.5rem;
 }/*# sourceMappingURL=main.css.map */

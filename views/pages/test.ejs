@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<style>
+  body {
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+  }
+  wpad-map {
+    width: 100%;
+  }
+  #map {
+    width: clamp(40vw, 1200px, 90vw);
+    aspect-ratio: 2;
+    margin: 0 auto;
+  }
+  @media screen and (max-width: 768px) {
+    #map {
+      aspect-ratio: 1;
+    }
+  }
+  @media screen and (max-width: 512px) {
+    #map {
+      aspect-ratio: 1/2;
+    }
+  }
+</style>
+<body>
+  <wpad-map googleMapsAPIKey="AIzaSyBQURtg-e0VW7VvySFIrDsYAOLIG9o80GQ"></wpad-map>
+  <script src="/scripts/map.js"></script>
+</body>
+</html>

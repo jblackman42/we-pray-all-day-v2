@@ -1,0 +1,270 @@
+$form-bg: $secondary-black;
+$fill-color: $accent-yellow;
+$bg-color: white;
+$form-font-size: 18px;
+// $form-font-size: clamp(18px, 2vw, 20px);
+
+.forms-container {
+    font-family: Proxima-Nova;
+    #register-form {
+        width: 500px;
+        max-width: 90vw;
+        background-color: $form-bg;
+        box-sizing: content-box;
+        padding-top: 2rem;
+        border-radius: .75rem;
+        .title {
+            margin: 0;
+            margin-bottom: .5rem;
+            text-align: center;
+            color: white;
+            font-size: 2em;
+        }
+        & > .progress {
+            display: flex;
+            width: 100%;
+            justify-content: space-around;
+            padding: 1rem 0;
+            margin-bottom: 1rem;
+            .step {
+                --delay: 300ms;
+
+                background-color: $bg-color;
+                padding: 10px;
+                border-radius: 50%;
+                z-index: 99;
+                background-color: $bg-color;
+                position: relative;
+
+                transition: background-color 150ms linear;
+                transition-delay: var(--delay);
+                
+                &:nth-child(1) {
+                    background-color: $fill-color;
+                    &::after {
+                        color: $fill-color;
+                    }
+                }
+                
+                i, svg {
+                    display: grid;
+                    place-items: center;
+                    width: 18px;
+                    height: 18px;
+                }
+
+                &::after {
+                    content: attr(data-title);
+                    position: absolute;
+                    left: 50%;
+                    top: 100%;
+                    transform: translate(-50%, 0%);
+                    color: white;
+                    
+                    transition: color 150ms linear;
+                    transition-delay: var(--delay);
+                }
+            }
+            position: relative;
+            &::before, &::after {
+                content: "";
+                position: absolute;
+                height: 2px;
+                width: 100%;
+                background-color: $bg-color;
+                top: calc(50% - 1px);
+            }&::after {
+                background-color: $fill-color;
+                left: 0;
+                width: 12.5%;
+
+                transition: width 300ms linear;
+                // 16.5
+                // 49.5
+                // 82.5 
+            }
+            &.page-1 {
+                &::after {
+                    width: calc(12.5% + 25%);
+                }
+                .step:nth-child(2) {
+                    background-color: $fill-color;
+                    &::after { color: $fill-color; }
+                }
+            }
+            &.page-2 {
+                &::after {
+                    width: calc(12.5% + 50%);
+                }
+                .step:nth-child(2) {
+                    background-color: $fill-color;
+                    &::after { color: $fill-color; }
+                }
+                .step:nth-child(3) {
+                    background-color: $fill-color;
+                    &::after { color: $fill-color; }
+                }
+            }
+            &.page-3 {
+                &::after {
+                    width: calc(12.5% + 75%);
+                }
+                .step:nth-child(2) {
+                    background-color: $fill-color;
+                    &::after { color: $fill-color; }
+                }
+                .step:nth-child(3) {
+                    background-color: $fill-color;
+                    &::after { color: $fill-color; }
+                }
+                .step:nth-child(4) {
+                    background-color: $fill-color;
+                    &::after { color: $fill-color; }
+                }
+            }
+            &.done::after {
+                width: 100%;
+            }
+        }
+
+        .error-container {
+            display: flex;
+            justify-content: center;
+            p {
+                margin: 0;
+                font-weight: bold;
+                color: #e74c3c;
+            }
+        }
+    }
+    .page {
+        
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        
+        gap: 1rem;
+        padding: 1rem;
+        padding-top: 0;
+        // margin: 1rem;
+        // margin-top: 0;
+        box-sizing: border-box;
+        #pattern-label {
+            color: white;
+            font-size: $form-font-size;
+            margin: .25rem 0;
+        }
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            margin-top: $form-font-size;
+            width: calc(50% - .5rem);
+            &.full-width {
+                width: 100%;
+            }
+            @media screen and (max-width: 768px) {
+                width: 100%;
+            }
+
+            position: relative;
+            label {
+                position: absolute;
+                font-size: $form-font-size;
+                color: #FFFFFFAA;
+                user-select: none;
+                width: 100%;
+                height: 100%;
+                box-sizing: border-box;
+                transform-origin: bottom left;
+                white-space: nowrap;
+            }
+
+            phone-number-input ~ label {
+                transition: transform 100ms ease-in-out, color 100ms linear;
+                padding: 4px;
+                display: flex;
+                align-items: center;
+                white-space: break-spaces;
+                cursor: text;
+            }
+            phone-number-input:has(input:not(:placeholder-shown)) ~ label {
+                transform: scale(.8) translate(0, calc(-100% - 4px));
+                color: white;
+                cursor: default;
+            }
+            input, select, textarea {
+                color: white !important;
+                border: solid #FFFFFF66 1px!important;
+                background-color: transparent !important;
+                font-size: $form-font-size;
+                border-radius: 2px;
+                outline: none;
+                padding: 4px 2px;
+
+                height: 30px;
+                box-sizing: border-box;
+
+                & ~ label {
+                    transition: transform 100ms ease-in-out, color 100ms linear;
+                    padding: 4px;
+                    display: flex;
+                    align-items: center;
+                    white-space: break-spaces;
+                    cursor: text;
+                }
+
+                &:invalid {
+                    outline: 2px solid #e74c3c;
+                    & ~ label::before {
+                        content: "Invalid";
+                        position: absolute;
+                        color: #e74c3c;
+                        right: -25%;
+                    }
+                }
+                &:not(:placeholder-shown) ~ label {
+                    transform: scale(.8) translate(0, calc(-100% - 4px));
+                    color: white;
+                    cursor: default;
+                }       
+                option {
+                    color: black;
+                    &:hover {
+                        background-color: $accent-yellow;
+                    }
+                }
+            }
+            select {
+                padding: 0;
+                text-indent: 2px;
+            }
+            textarea {
+                box-sizing: content-box;
+                resize: none;
+                outline: none;
+                height: 42px;
+                // font-size: $form-font-size;
+                // font-family: inherit;
+                // border-radius: 2px;
+                // outline: none;
+                & ~ label {
+                    height: max-content;
+                }
+            }
+        }
+    }
+    .btn-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        button {
+            background: $fill-color;
+            color: currentColor;
+            border: none;
+            text-transform: capitalize;
+            padding: .25rem .75rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    }
+}

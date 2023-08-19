@@ -1,128 +1,98 @@
 prayer-calendar {
   display: flex;
   justify-content: center;
-  background-color: #f5eee3;
+  width: 100%;
+  position: relative;
+  padding: 4rem 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 prayer-calendar .calendar {
-  width: 100%;
-  margin: 0 auto;
+  display: grid;
+  width: clamp(50vw, 1280px, 100vw);
+  box-sizing: border-box;
+  padding: 1rem;
 }
-prayer-calendar .calendar #context {
-  text-align: center;
-  background-color: #282828;
-  color: white;
-  box-sizing: content-box;
-  width: 100%;
-}
-prayer-calendar .calendar #context h1 {
-  font-size: clamp(30px, 7vw, 96px);
-  padding-block: 2rem 1rem;
-  margin: 0;
-}
-prayer-calendar .calendar #context ol {
-  font-size: clamp(16px, 2vw, 24px);
-  font-weight: 100;
-  margin: 0 auto;
-  padding-bottom: 2rem;
-  padding-left: 1.25rem;
-  width: -moz-max-content;
-  width: max-content;
-  max-width: 85vw;
-  counter-reset: list-counter;
-  list-style: none;
-}
-prayer-calendar .calendar #context ol li {
-  text-align: left;
-  counter-increment: list-counter;
-  padding: 0.25rem 0;
-  font-size: clamp(14px, 2vw, 18px);
-}
-prayer-calendar .calendar #context ol li::before {
-  content: counter(list-counter);
-  color: black;
-  width: clamp(14px, 2vw, 18px);
-  height: clamp(14px, 2vw, 18px);
-  padding: 0.5em;
-  margin-right: 4px;
-  border-radius: 50%;
-  display: inline-grid;
-  place-items: center;
-  background-color: #fcbb09;
-}
-prayer-calendar .calendar #month-header {
+prayer-calendar .calendar .calendar-controls {
   display: flex;
   justify-content: space-between;
-  width: 1000px;
-  max-width: 90vw;
-  margin: 0 auto;
-  margin-top: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
 }
-@media screen and (max-width: 850px) {
-  prayer-calendar .calendar #month-header {
-    flex-direction: column;
-    align-items: center;
+@media screen and (max-width: 1440px) {
+  prayer-calendar .calendar .calendar-controls {
+    justify-content: center !important;
+    gap: 1rem;
   }
 }
-prayer-calendar .calendar #month-header h3 {
-  margin: auto 2rem;
-  min-width: 150px;
-  text-align: center;
-  font-family: Proxima-nova;
-}
-prayer-calendar .calendar #month-header #btn-container {
+prayer-calendar .calendar .calendar-controls .month-selector-container {
   display: flex;
 }
-prayer-calendar .calendar #month-header #btn-container .btn {
-  border-radius: 50%;
-  padding: 0.25rem;
-  margin: auto 0;
-  background-color: #2e2d2b;
-  color: #f5eee3;
-  font-size: 16px;
-  cursor: pointer;
+prayer-calendar .calendar .calendar-controls .month-selector-container .btn {
   display: grid;
   place-items: center;
+  padding: 0;
   border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  transform: translate(0);
+}
+prayer-calendar .calendar .calendar-controls .month-selector-container h3 {
   height: -moz-max-content;
   height: max-content;
+  margin: auto 0;
+  text-align: center;
+  width: 200px;
 }
-prayer-calendar .calendar #month-header #legend {
+prayer-calendar .calendar .calendar-controls #community-select {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: white;
+  color: black;
+  outline: none;
+}
+prayer-calendar .calendar .calendar-controls #legend {
   display: flex;
 }
-prayer-calendar .calendar #month-header #legend #empty-square,
-prayer-calendar .calendar #month-header #legend #filled-square {
-  width: calc((12.8571428571vw - 0.25rem) / 8 - 3px);
-  max-width: calc((142.8571428571px - 0.25rem) / 8 - 3px);
-  height: calc((12.8571428571vw - 0.25rem) / 8 - 3px);
-  max-height: calc((142.8571428571px - 0.25rem) / 8 - 3px);
-  background-color: #f7f1e3;
-  border: 1px solid #7f8c8d;
-  margin: auto 0.25rem;
+prayer-calendar .calendar .calendar-controls #legend #empty-square, prayer-calendar .calendar .calendar-controls #legend #filled-square {
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+  background-color: white;
 }
-prayer-calendar .calendar #month-header #legend #filled-square {
+prayer-calendar .calendar .calendar-controls #legend #filled-square {
+  margin-left: 2rem;
   background-color: #fee32d;
-  margin-left: 1rem;
+}
+prayer-calendar .calendar .calendar-controls #legend p {
+  margin: 0;
+  margin-left: 4px;
 }
 @media screen and (max-width: 768px) {
-  prayer-calendar .calendar #month-header #legend {
+  prayer-calendar .calendar .calendar-controls #legend {
     display: none;
     visibility: hidden;
   }
 }
+@media screen and (max-width: 768px) {
+  prayer-calendar .calendar .calendar-controls {
+    justify-content: center;
+    gap: 1rem;
+  }
+  prayer-calendar .calendar .calendar-controls #community-select {
+    font-size: clamp(10px, 3vw, 16px);
+  }
+}
 prayer-calendar .calendar #weekdays {
-  width: 1000px;
-  max-width: 90vw;
   display: flex;
-  gap: 0.25rem;
-  margin: 0 auto;
+  font-size: clamp(1rem, 2vw, 1.25rem);
 }
 prayer-calendar .calendar #weekdays p {
-  width: calc(12.8571428571vw - 0.25rem);
-  max-width: calc(142.8571428571px - 0.25rem);
   text-align: center;
-  font-weight: bold;
-  text-transform: uppercase;
-  margin: 1rem 0;
+  width: 100%;
 }
 @media screen and (max-width: 768px) {
   prayer-calendar .calendar #weekdays p span {
@@ -131,81 +101,86 @@ prayer-calendar .calendar #weekdays p {
   }
 }
 prayer-calendar .calendar #days-grid {
-  width: 1000px;
-  max-width: 90vw;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 0.25rem;
-  place-items: center;
-  margin: 1rem auto;
-  margin-top: 0;
+  gap: 4px;
+  font-size: clamp(8px, 1vw, 14px);
 }
 prayer-calendar .calendar #days-grid .calendar-day {
+  border: none;
   background-color: #fcbb09;
   color: black;
-  width: calc(12.8571428571vw - 0.25rem);
-  max-width: calc(142.8571428571px - 0.25rem);
-  height: calc(12.8571428571vw - 0.25rem);
-  max-height: calc(142.8571428571px - 0.25rem);
-  text-align: center;
+  aspect-ratio: 1;
+  position: relative;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  text-decoration: none;
-  border: none;
-  position: relative;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 0.25rem;
+}
+prayer-calendar .calendar #days-grid .calendar-day.pointer {
   cursor: pointer;
-  padding: 0;
+}
+prayer-calendar .calendar #days-grid .calendar-day.dull {
+  opacity: 0.4;
 }
 prayer-calendar .calendar #days-grid .calendar-day .date {
-  margin: 1rem auto;
-  font-size: 18px;
-  font-weight: bold;
-  text-transform: lowercase;
-  text-align: left;
-}
-@media screen and (max-width: 1024px) {
-  prayer-calendar .calendar #days-grid .calendar-day .date {
-    margin: 0.5rem auto;
-  }
-}
-prayer-calendar .calendar #days-grid .calendar-day .community-title {
-  font-size: 14px;
+  position: absolute;
+  top: 0;
+  left: 0;
   background-color: #2e2d2b;
-  color: white;
+  color: #f5eee3;
+  border-radius: 0 0 4px 0;
   margin: 0;
-  width: 100%;
-  margin-top: auto;
-  padding-block: 0.25rem;
+  padding: 4px 8px;
+  border-top-left-radius: 0.25rem;
 }
-@media screen and (max-width: 1024px) {
-  prayer-calendar .calendar #days-grid .calendar-day .community-title {
-    display: none;
-    visibility: hidden;
-  }
-  prayer-calendar .calendar #days-grid .calendar-day .hours-container {
-    order: 999;
-  }
+prayer-calendar .calendar #days-grid .calendar-day .day-row {
+  display: grid;
+  place-items: center;
+  height: 49%;
+  width: 100%;
+}
+prayer-calendar .calendar #days-grid .calendar-day .day-row.bottom {
+  height: 51%;
+  place-items: end;
+}
+prayer-calendar .calendar #days-grid .calendar-day .community {
+  margin: 0 0.5rem;
+  text-align: center;
+}
+prayer-calendar .calendar #days-grid .calendar-day .community .community-name {
+  font-weight: bold;
+}
+prayer-calendar .calendar #days-grid .calendar-day .hours-label, prayer-calendar .calendar #days-grid .calendar-day .percent-label {
+  width: 100%;
+  background-color: #2e2d2b;
+  color: #f5eee3;
+  margin: 0;
+  margin-top: auto;
+  padding: 4px 0;
+}
+prayer-calendar .calendar #days-grid .calendar-day .percent-label {
+  display: none;
+  visibility: hidden;
 }
 prayer-calendar .calendar #days-grid .calendar-day .hours-container {
-  background-color: rgba(46, 45, 43, 0.6666666667);
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   gap: 1px;
+  background-color: #2e2d2b;
   padding: 1px;
-  width: calc(100% - 2px);
+  box-sizing: border-box;
 }
 prayer-calendar .calendar #days-grid .calendar-day .hours-container .hour {
-  display: block;
-  background-color: #f7f1e3;
-  box-sizing: border-box;
   width: 100%;
-  margin: 0;
-  aspect-ratio: 1/1;
+  aspect-ratio: 1;
+  background-color: white;
   position: relative;
+  margin: 0;
 }
 prayer-calendar .calendar #days-grid .calendar-day .hours-container .hour.booked {
-  background-color: #fee32d;
+  background-color: #fee32d !important;
 }
 prayer-calendar .calendar #days-grid .calendar-day .hours-container .hour:hover::before, prayer-calendar .calendar #days-grid .calendar-day .hours-container .hour:hover::after {
   display: block;
@@ -224,8 +199,8 @@ prayer-calendar .calendar #days-grid .calendar-day .hours-container .hour::after
   left: 50%;
   transform: translateX(-50%);
   z-index: 999;
-  background-color: #f5eee3;
-  box-shadow: 0 0 0 1px #2e2d2b;
+  background-color: white;
+  box-shadow: 0 0 5px 1px #2e2d2b;
   border-radius: 2px;
   padding: 0.25rem;
 }
@@ -236,7 +211,7 @@ prayer-calendar .calendar #days-grid .calendar-day .hours-container .hour::befor
   position: absolute;
   width: 6px;
   height: 6px;
-  background-color: #f5eee3;
+  background-color: white;
   border: 1px solid #2e2d2b;
   border-top-color: transparent;
   border-right-color: transparent;
@@ -247,74 +222,84 @@ prayer-calendar .calendar #days-grid .calendar-day .hours-container .hour::befor
   transform-origin: bottom left;
   transform: rotate(-45deg);
 }
-prayer-calendar .calendar #days-grid .calendar-day:disabled {
-  cursor: not-allowed;
-}
-prayer-calendar .calendar #days-grid .calendar-day:disabled * {
-  cursor: not-allowed !important;
-}
-prayer-calendar .calendar #days-grid .calendar-day:disabled .hours-container .hour::after, prayer-calendar .calendar #days-grid .calendar-day:disabled .hours-container .hour::before {
-  content: "";
-  display: none;
-  visibility: hidden;
-}
-prayer-calendar .calendar #days-grid .calendar-day .progress-label {
-  display: none;
-  visibility: hidden;
-  margin: 0;
-  font-size: clamp(10px, 1.75vw, 12px);
-  margin-top: auto;
-}
-@media screen and (max-width: 425px) {
-  prayer-calendar .calendar #days-grid .calendar-day .progress-label {
-    margin: auto auto 0 2px;
-  }
-  prayer-calendar .calendar #days-grid .calendar-day .progress-label .covered-label {
-    display: none;
-    visibility: hidden;
-  }
-}
 prayer-calendar .calendar #days-grid .calendar-day .progress-bar-container {
+  width: 100%;
+  height: 8px;
   display: none;
   visibility: hidden;
-  height: 6px;
-  width: 100%;
-  margin-right: auto;
-  background-color: #7f8c8d;
+  background-color: #2e2d2b;
+  border-radius: 0 0 0.25rem 0.25rem;
   overflow: hidden;
 }
 prayer-calendar .calendar #days-grid .calendar-day .progress-bar-container .progress-bar {
-  background-color: #2ecc71;
-  width: 100%;
   height: 100%;
-}
-@media screen and (max-width: 1024px) {
-  prayer-calendar .calendar #days-grid .calendar-day .progress-label {
-    display: block;
-    visibility: visible;
-    margin-top: auto;
-    width: 100%;
-    text-align: center;
-  }
+  background-color: #2ecc71;
+  border-radius: 0 4px 4px 0;
 }
 @media screen and (max-width: 768px) {
-  prayer-calendar .calendar #days-grid .calendar-day {
-    justify-content: center;
-    align-items: center;
-    border-radius: 3px;
-    overflow: hidden;
+  prayer-calendar .calendar #days-grid .day-row.bottom {
+    height: -moz-max-content;
+    height: max-content;
   }
-  prayer-calendar .calendar #days-grid .calendar-day .progress-label, prayer-calendar .calendar #days-grid .calendar-day .progress-bar-container {
-    display: block;
-    visibility: visible;
-  }
-  prayer-calendar .calendar #days-grid .calendar-day p.date {
-    margin: 0;
-    margin-top: auto;
-    font-size: clamp(11px, 3.5vw, 18px);
-  }
-  prayer-calendar .calendar #days-grid .calendar-day .community-title, prayer-calendar .calendar #days-grid .calendar-day .hours-container {
+  prayer-calendar .calendar #days-grid .community {
     display: none;
     visibility: hidden;
+  }
+  prayer-calendar .calendar #days-grid .hours-container {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  prayer-calendar .calendar #days-grid .date {
+    background-color: transparent !important;
+    color: black !important;
+    font-weight: bold;
+    left: 50% !important;
+    transform: translateX(-50%);
+    padding: 1vw !important;
+    font-size: 3vw;
+  }
+  prayer-calendar .calendar #days-grid .hours-label {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  prayer-calendar .calendar #days-grid .hours-label, prayer-calendar .calendar #days-grid .percent-label {
+    background-color: transparent !important;
+    color: black !important;
+    font-size: 2.5vw;
+  }
+  prayer-calendar .calendar #days-grid .percent-label {
+    display: block !important;
+    visibility: visible !important;
+  }
+  prayer-calendar .calendar #days-grid .progress-bar-container {
+    display: block !important;
+    visibility: visible !important;
+  }
+}
+prayer-calendar #loading {
+  background-color: rgba(46, 45, 43, 0.6666666667);
+  position: absolute;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  visibility: hidden;
+  display: none;
+}
+prayer-calendar .loader {
+  border: 16px solid rgba(0, 0, 0, 0.1333333333);
+  border-right: 16px solid #fcbb09;
+  border-left: 16px solid #fcbb09;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }/*# sourceMappingURL=calendar.css.map */

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sign Up - We Pray All Day</title>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+    <%- include('../partials/loading'); %>
+    <%- include('../partials/popup'); %>
+    <%- include('../partials/navbar'); %>
+
+    <form id="sign-up-form">
+        <h2 id="prayer-date"></h2>
+        <p id="community-champions"></p>
+        <div class="input-container">
+            <label for="Fist_Name">First Name:</label>
+            <input type="text" name="First_Name" id="First_Name" required>
+        </div>
+        <div class="input-container">
+            <label for="Last_Name">Last Name:</label>
+            <input type="text" name="Last_Name" id="Last_Name" required>
+        </div>
+        <div class="input-container">
+            <label for="Email">Email:</label>
+            <input type="email" name="Email" id="Email">
+        </div>
+        <div class="input-container">
+            <label for="Phone">Phone Number:</label>
+            <input type="tel" id="Phone" name="Phone" required pattern="\d{3}-\d{3}-\d{4}" maxlength="12">
+          </div>
+        <div class="dropdown-container">
+            <label for="Community_ID">Community:</label>
+            <select name="Community_ID" id="Community_ID" required></select>
+        </div>
+        <div class="recurring-container">
+            <label for="Recurring">Recurring Signup:</label>
+            <input type="checkbox" id="Recurring">
+            <label for="Recurring">
+                <span>The</span>
+                <select id="sequenceDayPosition" disabled>
+                    <option value="First">First</option>
+                    <option value="Second">Second</option>
+                    <option value="Third">Third</option>
+                    <option value="Fourth">Fourth</option>
+                    <option value="Last">Last</option>
+                </select>
+                <select id="sequenceWeekdays" disabled>
+                    <option value="Sunday">Sunday</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Weekday">Weekday</option>
+                    <option value="Weekend Day">Weekend Day</option>
+                    <option value="Day">Day</option>
+                </select>
+                <span>of every</span>
+                <input type="number" id="sequenceInterval" value="1" min="1" max="11" inputmode="numeric" disabled>
+                <span>month(s) for</span>
+                <input type="number" id="sequenceTotalOccurrences" value="1" min="1" max="12" inputmode="numeric" disabled>
+                <span>occurrences.</span>
+            </label>
+            <div id="update-icon-container" onmouseover="this.classList.remove('highlight')">
+                <i class='fas fa-info'></i>
+                <div id="update-date-container"></div>
+            </div>
+        </div>
+        <div class="time-container">
+            <label>Hour of Prayer:</label>
+            <div id="hours-options">
+            </div>
+        </div>
+        <div class="form-footer">
+            <p id="curr-time">Please Select an Hour of Prayer</p>
+            <button class="btn highlight" type="submit">Submit</button>
+        </div>
+    </form>
+    <script src="/scripts/signup.js"></script>
+    <script>
+      document.getElementById('Phone').addEventListener('input', function (e) {
+        var target = e.target, position = target.selectionEnd, length = target.value.length;
+      
+        // Remove hyphens
+        target.value = target.value.replace(/-/g, '');
+        
+        // Add the hyphens back in
+        if (length > 2 && length < 6) {
+            target.value = target.value.slice(0, 3) + '-' + target.value.slice(3);
+        } else if (length > 5) {
+            target.value = target.value.slice(0, 3) + '-' + target.value.slice(3, 6) + '-' + target.value.slice(6);
+        }
+
+        // Adjust the cursor position
+        target.selectionEnd = position += ((target.value.charAt(position - 1) === '-' && target.value.charAt(length - 1) !== '-') ? 1 : 0);
+      });
+
+      const sequenceDayPositionDOM = document.getElementById('sequenceDayPosition');
+      const sequenceWeekdaysDOM = document.getElementById('sequenceWeekdays');
+      const sequenceIntervalDOM = document.getElementById('sequenceInterval');
+      const totalOccurrencesDOM = document.getElementById('sequenceTotalOccurrences');
+      document.getElementById('Recurring').addEventListener('change', function () {
+        sequenceDayPositionDOM.disabled = !sequenceDayPositionDOM.disabled;
+        sequenceWeekdaysDOM.disabled = !sequenceWeekdaysDOM.disabled;
+        sequenceIntervalDOM.disabled = !sequenceIntervalDOM.disabled;
+        totalOccurrencesDOM.disabled = !totalOccurrencesDOM.disabled;
+      })
+
+    </script>
+</body>
+
+</html>

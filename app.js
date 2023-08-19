@@ -1,34 +1,52 @@
+// Importing required modules
 const express = require('express');
-const app = express();
-var session = require('express-session');
-
-//middleware
-app.use(express.json());
+const session = require('express-session');
+const passport = require('passport');
+const flash = require('connect-flash');
+var livereload = require("livereload");
+var connectLiveReload = require("connect-livereload");
 require('dotenv').config();
+require('./middleware/Passport.js')(passport);
+const cors = require('cors');
 
-if(process.env.NODE_ENV === 'production') {
-    app.use((req, res, next) => {
-        if (req.header('x-forwarded-proto') !== 'https')
-        res.redirect(`https://${req.header('host')}${req.url}`)
-        else
-        next()
-    })
+const app = express();
+
+if (process.env.ENVIRONMENT = 'dev') {
+  const liveReloadServer = livereload.createServer();
+  liveReloadServer.server.once("connection", () => {
+    setTimeout(() => {
+      liveReloadServer.refresh("/");
+    }, 100);
+  
+  });
+  
+  app.use(connectLiveReload());
 }
 
-app.use(express.json({ limit: '16MB' }));
-app.use(express.urlencoded({ extended: true }));
-
-const oneDay = 1000 * 60 * 60 * 24;
-app.use(session({
-    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
-    saveUninitialized:true,
-    cookie: { maxAge: oneDay },
-    resave: false 
+app.use(cors({
+  origin: '*'
 }));
 
-// set the view engine to ejs
-app.set('view engine', 'ejs');
+// Express settings
+app.set('trust proxy', 1); // Trust first proxy
+app.set('view engine', 'ejs'); // Set the view engine to ejs
 
+// Session middleware
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: process.env.SESSION_SECRET === 'production', maxAge: 1000 * 60 * 60 * 24 }
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+// Package size middleware
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb', extended: true}));
+
+// Static file middleware for serving styles, scripts and assets
 app.use("/styles",express.static(__dirname + "/views/styles"));
 app.use("/styles-widgets",express.static(__dirname + "/views/styles-widgets"));
 app.use("/scripts",express.static(__dirname + "/views/scripts"));
@@ -37,12 +55,16 @@ app.use("/assets",express.static(__dirname + "/views/assets"));
 
 const port = process.env.PORT || 3000;
 
-//imported functions
-const {populate} = require('./populate');
-
 //navigation routing
 app.use('/', require('./routes/index'));
+// API Routing
 app.use('/api/v2/mp', require('./routes/mp'));
+app.use('/api/auth', require('./routes/oauth'));
+app.use('/api/v1/authenticate', require('./routes/authenticate.js'));
+app.use('/api/v1/MinistryPlatformAPI', require('./routes/ministryPlatformAPI.js'));
+app.use('/api/twilio', require('./routes/twilio.js'));
+
+app.use('/api/sms', require('./routes/sms.js'));
 
 const start = async () => {
     try {
