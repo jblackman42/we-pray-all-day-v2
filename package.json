@@ -23,19 +23,12 @@
     "express-session": "^1.17.3",
     "fs": "^0.0.1-security",
     "ical-generator": "^5.0.0",
-    "jsonwebtoken": "^9.0.1",
-    "luxon": "^3.3.0",
-    "msnodesqlv8": "^4.1.0",
-    "mssql": "^9.1.1",
-    "mysql": "^2.18.1",
-    "node-openvpn": "^0.1.1",
     "nodemon": "^2.0.22",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "qs": "^6.11.2",
-    "telnyx": "^1.25.5",
-    "twilio": "^4.15.0"
+    "telnyx": "^1.25.5"
   },
   "devDependencies": {
     "connect-livereload": "^0.6.1",
