@@ -3,29 +3,30 @@ const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
-var livereload = require("livereload");
-var connectLiveReload = require("connect-livereload");
 require('dotenv').config();
 require('./middleware/Passport.js')(passport);
-const cors = require('cors');
 
 const app = express();
+// var livereload = require("livereload");
+// var connectLiveReload = require("connect-livereload");
+// const cors = require('cors');
 
-if (process.env.ENVIRONMENT = 'dev') {
-  const liveReloadServer = livereload.createServer();
-  liveReloadServer.server.once("connection", () => {
-    setTimeout(() => {
-      liveReloadServer.refresh("/");
-    }, 100);
-  
-  });
-  
-  app.use(connectLiveReload());
-}
 
-app.use(cors({
-  origin: '*'
-}));
+// if (process.env.ENVIRONMENT = 'dev') {
+//   const liveReloadServer = livereload.createServer();
+//   liveReloadServer.server.once("connection", () => {
+//     setTimeout(() => {
+//       liveReloadServer.refresh("/");
+//     }, 100);
+  
+//   });
+  
+//   app.use(connectLiveReload());
+// }
+
+// app.use(cors({
+//   origin: '*'
+// }));
 
 // Express settings
 app.set('trust proxy', 1); // Trust first proxy
