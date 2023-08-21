@@ -26,7 +26,8 @@
         </div>
         <div class="input-container">
             <label for="Phone">Phone Number:</label>
-            <input type="tel" id="Phone" name="Phone" required pattern="\d{3}-\d{3}-\d{4}" maxlength="12">
+            <phone-number-input name="Phone" input-id="Phone" placeholder=" "></phone-number-input>
+            <!-- <input type="tel" id="Phone" name="Phone" required pattern="\d{3}-\d{3}-\d{4}" maxlength="12"> -->
           </div>
         <div class="dropdown-container">
             <label for="Community_ID">Community:</label>
@@ -53,7 +54,7 @@
                     <option value="Friday">Friday</option>
                     <option value="Saturday">Saturday</option>
                     <option value="Weekday">Weekday</option>
-                    <option value="Weekend Day">Weekend Day</option>
+                    <option value="WeekendDay">Weekend Day</option>
                     <option value="Day">Day</option>
                 </select>
                 <span>of every</span>
@@ -77,25 +78,10 @@
             <button class="btn highlight" type="submit">Submit</button>
         </div>
     </form>
+
+    <script src="/scripts/Phone-Number.js"></script>
     <script src="/scripts/signup.js"></script>
     <script>
-      document.getElementById('Phone').addEventListener('input', function (e) {
-        var target = e.target, position = target.selectionEnd, length = target.value.length;
-      
-        // Remove hyphens
-        target.value = target.value.replace(/-/g, '');
-        
-        // Add the hyphens back in
-        if (length > 2 && length < 6) {
-            target.value = target.value.slice(0, 3) + '-' + target.value.slice(3);
-        } else if (length > 5) {
-            target.value = target.value.slice(0, 3) + '-' + target.value.slice(3, 6) + '-' + target.value.slice(6);
-        }
-
-        // Adjust the cursor position
-        target.selectionEnd = position += ((target.value.charAt(position - 1) === '-' && target.value.charAt(length - 1) !== '-') ? 1 : 0);
-      });
-
       const sequenceDayPositionDOM = document.getElementById('sequenceDayPosition');
       const sequenceWeekdaysDOM = document.getElementById('sequenceWeekdays');
       const sequenceIntervalDOM = document.getElementById('sequenceInterval');
