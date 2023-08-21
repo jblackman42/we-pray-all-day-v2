@@ -144,7 +144,8 @@ router.get('/PrayerSchedules', async (req, res) => {
         
         res.status(200).send(data).end();
     } catch (err) {
-        res.status(500).send({error: err}).end();
+      console.error(err);
+      res.status(500).send({error: err}).end();
     }
 })
 
@@ -163,7 +164,8 @@ router.post('/PrayerSchedules', async (req, res) => {
       
       res.status(200).send(data).end();
   } catch (err) {
-      res.status(500).send({error: err}).end();
+    console.error(err);
+    res.status(500).send({error: err}).end();
   }
 })
 
@@ -184,7 +186,8 @@ router.post('/ConfirmationEmail', async (req, res) => {
       .then(emailData => emailData)
     
     res.status(200).send(email).end();
-  } catch (error) {
+  } catch (err) {
+    console.error(err);
     res.status(500).send({error: err}).end();
   }
 })
@@ -212,7 +215,8 @@ router.get('/GenerateSequence', async (req, res) => {
         .then(response => response.data);
     
     res.status(200).send(data).end();
-  } catch (error) {
+  } catch (err) {
+    console.error(err);
     res.status(500).send({error: err}).end();
   }
 })
@@ -233,7 +237,8 @@ router.post('/sequence', async (req, res) => {
   
       res.send(sequence);
   } catch (err) {
-      res.status(500).send(err).end();
+    console.error(err);
+    res.status(500).send({error: err}).end();
   }
 })
 
@@ -372,7 +377,7 @@ router.get('/CommunityPrayerSchedules/:id', ensurePrayerLeaderByID, async (req, 
         }
     }).then(response => response.data));
   } catch (err) {
-    // console.log(err)
+    console.log(err)
     res.status(500).send({error: err}).end();
   }
 })
@@ -392,7 +397,7 @@ router.get('/CommunityReservations/:id', ensurePrayerLeaderByID, async (req, res
         }
     }).then(response => response.data));
   } catch (err) {
-    // console.log(err)
+    console.log(err)
     res.status(500).send({error: err}).end();
   }
 })
@@ -414,7 +419,7 @@ router.post('/CommunityReservations/:id', ensurePrayerLeaderByID, async (req, re
         }
     }).then(response => response.data));
   } catch (err) {
-    // console.log(err)
+    console.log(err)
     res.status(500).send({error: err}).end();
   }
 })
@@ -436,7 +441,7 @@ router.put('/CommunityReservations/:id', ensurePrayerLeaderByID, async (req, res
         }
     }).then(response => response.data));
   } catch (err) {
-    // console.log(err)
+    console.log(err)
     res.status(500).send({error: err}).end();
   }
 })
@@ -453,7 +458,7 @@ router.delete('/CommunityReservations/:id', ensurePrayerLeaderByID, async (req, 
         }
     }).then(response => response.data));
   } catch (err) {
-    // console.log(err)
+    console.log(err)
     res.status(500).send({error: err}).end();
   }
 })
@@ -477,7 +482,7 @@ router.get('/Top10Users/:id', ensurePrayerLeaderByID, async (req, res) => {
         }
     }).then(response => response.data));
   } catch (err) {
-    // console.log(err)
+    console.log(err)
     res.status(500).send({error: err}).end();
   }
 })
@@ -499,7 +504,7 @@ router.put('/PrayerPoints/:id', ensurePrayerLeaderByID, async (req, res) => {
         }
     }).then(response => response.data[0]));
   } catch (err) {
-    // console.log(err)
+    console.log(err)
     res.status(500).send({error: err}).end();
   }
 })
