@@ -42,7 +42,7 @@ navigation.get('/logout', (req, res) => {
 })
 
 navigation.get('/guide', (req, res) => {
-  const filename = 'Apr-May 2023.pdf'
+  const filename = 'Sept-Oct 2023.pdf'
   try {
     fs.readFile(path.join(__dirname, '..', 'views', 'assets', 'guides', filename), function (err,data){
         res.contentType("application/pdf").send(data);
@@ -89,9 +89,9 @@ navigation.get('/calendar-invite', (req, res) => {
 })
 
 
-navigation.get('/test', (req, res) => {
-  res.render('pages/test')
-})
+// navigation.get('/test', (req, res) => {
+//   res.render('pages/test')
+// })
 
 
 module.exports = navigation;
