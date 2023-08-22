@@ -76,7 +76,14 @@ nav {
       width: 100%;
       position: absolute;
       top: 100%;
-      left: 0;
+      left: 100vw;
+
+      transition: left 0ms linear;
+      transition-delay: 600ms;
+      &.open {
+        left: 0;
+        transition-delay: 0ms;
+      }
 
       // padding: 0 1rem;
       // gap: 4px;

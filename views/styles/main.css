@@ -453,7 +453,13 @@ nav .toggle-nav #toggle-nav-btn:active {
     width: 100%;
     position: absolute;
     top: 100%;
+    left: 100vw;
+    transition: left 0ms linear;
+    transition-delay: 600ms;
+  }
+  nav #links-container.open {
     left: 0;
+    transition-delay: 0ms;
   }
   nav #links-container .link {
     transform: translateX(100vw);
