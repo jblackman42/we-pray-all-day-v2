@@ -246,7 +246,7 @@ class PrayerCalendar extends HTMLElement {
             <p class="percent-label">${percentCovered}%</p>
             <div class="hours-container">
               ${hours.map(hour => {
-                  return `<${blocked ? 'p' : 'a'} href="/signup?date=${data.date}&hour=${hour}}" id="${hour}-${date}-${currMonth}-${currYear}" class="hour ${data.scheduledHours.includes(hour) ? 'booked' : ''}" data-content="${hour > 12 || hour == 0 ? Math.abs(hour - 12) : hour}:00 ${hour < 12 ? 'AM' : 'PM'}"></${blocked ? 'p' : 'a'}>`
+                  return `<${blocked ? 'p' : 'a'} href="/signup?date=${data.date}&hour=${hour}" id="${hour}-${date}-${currMonth}-${currYear}" class="hour ${data.scheduledHours.includes(hour) ? 'booked' : ''}" data-content="${hour > 12 || hour == 0 ? Math.abs(hour - 12) : hour}:00 ${hour < 12 ? 'AM' : 'PM'}"></${blocked ? 'p' : 'a'}>`
               }).join('')}
             </div>
             <div class="progress-bar-container">
