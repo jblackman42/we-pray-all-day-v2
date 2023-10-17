@@ -65,7 +65,7 @@ navigation.get('/calendar-invite', (req, res) => {
   
     pattern.forEach(date => {
       const startDate = new Date(date);
-      const endDate = new Date(startDate.getTime() + 3600000);
+      const endDate = new Date(startDate.getTime() + 3600000 + (startDate.getTimezoneOffset() * 60 * 1000));
   
       cal.createEvent({
         start: startDate,
