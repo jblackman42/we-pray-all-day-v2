@@ -42,7 +42,7 @@ navigation.get('/logout', (req, res) => {
 })
 
 navigation.get('/guide', (req, res) => {
-  const filename = 'Sept-Oct 2023.pdf'
+  const filename = 'Sept-Oct 2023 v2.pdf'
   try {
     fs.readFile(path.join(__dirname, '..', 'views', 'assets', 'guides', filename), function (err,data){
         res.contentType("application/pdf").send(data);
