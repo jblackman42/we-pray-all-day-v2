@@ -171,7 +171,7 @@ router.post('/PrayerSchedules', async (req, res) => {
 
 router.post('/ConfirmationEmail', async (req, res) => {
   const { Email, First_Name, DateString, TimeString, Dates } = req.body;
-
+  console.log(Dates)
   try {
     // Define the email data
     const msg = {

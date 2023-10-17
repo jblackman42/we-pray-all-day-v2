@@ -198,7 +198,7 @@ signUpFormDOM.addEventListener('submit', async (e) => {
         First_Name: firstNameInputDOM.value,
         DateString: signUpPattern.map(date => new Date(date).toLocaleDateString('en-us', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })).join('</br>'),
         TimeString: `${localStartDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} - ${localEndDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`,
-        Dates: signUpPattern
+        Dates: signUpPattern.map(date => new Date(new Date(date).getTime() + (new Date(date).getTimezoneOffset() * 60000)).toISOString())
       }
     })
     .then(() => {
