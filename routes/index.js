@@ -64,8 +64,9 @@ navigation.get('/calendar-invite', (req, res) => {
     const cal = ical({name: "We Pray All Day Calendar"});
   
     pattern.forEach(date => {
-      const startDate = new Date(date);
-      const endDate = new Date(startDate.getTime() + 3600000 + (startDate.getTimezoneOffset() * 60 * 1000));
+      const offset = new Date().getTimezoneOffset() * 60000; // offset in milliseconds
+      const startDate = new Date(new Date(date).getTime() - offset);
+      const endDate = new Date(startDate.getTime() + 3600000);      
   
       cal.createEvent({
         start: startDate,
