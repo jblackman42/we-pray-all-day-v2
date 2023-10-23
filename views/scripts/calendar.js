@@ -170,17 +170,14 @@ class PrayerCalendar extends HTMLElement {
     //   Champion: 'Pure Heart Church',
     //   RankedSignUps: [],
     // }
-
+    console.log(year, month)
     this.monthDays = [];
-    const date = new Date(new Date(year, month, 1).getTime() - ((1000*60*60*24) * new Date(year, month, 1).getDay()))
+    const startDate = new Date(new Date(year, month, 1).getTime() - ((1000*60*60*24) * new Date(year, month, 1).getDay()));
+    const date = startDate;
     //loops and iterates day by one until month no longer is the same
-    while (date.getMonth()%11 <= month && date.getFullYear() <= year) {
-        const communitySignUps = allPrayerSchedules.filter(schedule => new Date(schedule.Start_Date).toDateString() == new Date(date).toDateString() && schedule.Community_Name).map(schedule => schedule.Community_Name);
+    while ((date.getMonth() % 12 <= month || date.getFullYear() < year) && date.getFullYear() <= year) {
         const currChampions = allCommunityReservations.filter(reservation => new Date(reservation.Reservation_Date).toDateString() == new Date(date).toDateString())
         const scheduledHours = allPrayerSchedules.filter(schedule => new Date(schedule.Start_Date).toDateString() == new Date(date).toDateString()).map(schedule => new Date(new Date(schedule.Start_Date).getTime() - ((new Date(schedule.Start_Date).getTimezoneOffset() - 420) * 60000)).getHours())
-        const sortedCommunityNamesByCount = Object.entries(communitySignUps.reduce((acc, v) => (acc[v] = (acc[v] || 0) + 1, acc), {})).sort((a, b) => b[1] - a[1]);
-        const rankedChampion = communitySignUps.length ? sortedCommunityNamesByCount[0][0] : '';
-        const rankedCommunity = this.allCommunities.find(community => community.Community_Name == rankedChampion)
         //saves each day of the month parameter
         this.monthDays.push({ 
           date: date.toDateString(),

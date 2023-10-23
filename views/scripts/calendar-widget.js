@@ -205,7 +205,7 @@ class Calendar extends HTMLElement {
         this.monthDays = [];
         const date = new Date(new Date(year, month, 1).getTime() - ((1000*60*60*24) * new Date(year, month, 1).getDay()))
         //loops and iterates day by one until month no longer is the same
-        while (date.getMonth()%11 <= month && date.getFullYear() <= year) {
+        while ((date.getMonth() % 12 <= month || date.getFullYear() < year) && date.getFullYear() <= year) {
             const communitySignUps = allPrayerSchedules.filter(schedule => new Date(schedule.Start_Date).toDateString() == new Date(date).toDateString() && schedule.Community_Name).map(schedule => schedule.Community_Name);
             const currChampions = allCommunityReservations.filter(reservation => new Date(reservation.Reservation_Date).toDateString() == new Date(date).toDateString())
             const scheduledHours = allPrayerSchedules.filter(schedule => new Date(schedule.Start_Date).toDateString() == new Date(date).toDateString()).map(schedule => new Date(new Date(schedule.Start_Date).getTime() - ((new Date(schedule.Start_Date).getTimezoneOffset() - 420) * 60000)).getHours())
