@@ -37,7 +37,12 @@
             <label for="Recurring">Recurring Signup:</label>
             <input type="checkbox" id="Recurring">
             <label for="Recurring">
-                <span>The</span>
+                <select id="sequenceInterval" disabled>
+                    <option value="1">Monthly</option>
+                    <option value="2">Bi-Monthly</option>
+                    <option value="3">Quarterly</option>
+                </select>
+                <span>on the</span>
                 <select id="sequenceDayPosition" disabled>
                     <option value="First">First</option>
                     <option value="Second">Second</option>
@@ -57,9 +62,9 @@
                     <option value="WeekendDay">Weekend Day</option>
                     <option value="Day">Day</option>
                 </select>
-                <span>of every</span>
-                <input type="number" id="sequenceInterval" value="1" min="1" max="11" inputmode="numeric" disabled>
-                <span>month(s) for</span>
+                <!-- <span>of every</span> -->
+                <!-- <input type="number" id="sequenceInterval" value="1" min="1" max="11" inputmode="numeric" disabled> -->
+                <span>for</span>
                 <input type="number" id="sequenceTotalOccurrences" value="1" min="1" max="12" inputmode="numeric" disabled>
                 <span>occurrences.</span>
             </label>
