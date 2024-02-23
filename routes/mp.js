@@ -350,7 +350,7 @@ router.get('/myCommunity', ensurePrayerLeader, async (req, res) => {
       url: `https://my.pureheart.org/ministryplatformapi/tables/WPAD_Authorized_Users`,
       params: {
           $select: 'WPAD_Authorized_Users.[user_ID], WPAD_Community_ID_Table.[WPAD_Community_ID],WPAD_Community_ID_Table.[Community_Name], WPAD_Community_ID_Table.[Address], WPAD_Community_ID_Table.[City], WPAD_Community_ID_Table.[State], WPAD_Community_ID_Table.[Zip], WPAD_Community_ID_Table.[Start_Date], WPAD_Community_ID_Table.[End_Date], WPAD_Community_ID_Table.[Reminder_Text]',
-          $filter: `user_ID=${user.userid}`
+          $filter: `user_ID=${user.userid} AND (End_Date IS NULL OR End_Date > GETDATE())`
       },
       headers: {
           "Content-Type": "Application/JSON",
